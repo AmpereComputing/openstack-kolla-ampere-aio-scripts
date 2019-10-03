@@ -16,6 +16,8 @@ A simple script that will execute the necessary steps to build and deploy OpenSt
 
 ### globals.yml
 
+Kolla globals.yml configuration file used to produce an OpenStack All-In-One.
+
 * [etc/kolla/globals.yml](etc/kolla/globals.yml)
 
 ## References
@@ -23,3 +25,4 @@ A simple script that will execute the necessary steps to build and deploy OpenSt
 * [Kolla Image Building](https://docs.openstack.org/kolla/latest/admin/image-building.html)
 * [Kolla Ansible AIO Quickstart](https://docs.openstack.org/openstack-ansible/latest/user/aio/quickstart.html)
 * [Install and configure OpenStack Ocata with Kolla as a Standalone](https://blog.inkubate.io/install-and-configure-openstack-ocata-with-kolla-as-a-standalone)
+* [OpenStack, Ansible, and Kolla on Ubuntu 1604](https://elatov.github.io/2018/01/openstack-ansible-and-kolla-on-ubuntu-1604/)
