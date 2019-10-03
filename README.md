@@ -26,3 +26,4 @@ Kolla globals.yml configuration file used to produce an OpenStack All-In-One.
 * [Kolla Ansible AIO Quickstart](https://docs.openstack.org/openstack-ansible/latest/user/aio/quickstart.html)
 * [Install and configure OpenStack Ocata with Kolla as a Standalone](https://blog.inkubate.io/install-and-configure-openstack-ocata-with-kolla-as-a-standalone)
 * [OpenStack, Ansible, and Kolla on Ubuntu 1604](https://elatov.github.io/2018/01/openstack-ansible-and-kolla-on-ubuntu-1604/)
+* [Build a versatile OpenStack Lab using Kolla](https://www.linuxjournal.com/content/build-versatile-openstack-lab-kolla)
