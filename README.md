@@ -32,3 +32,4 @@ Kolla globals.yml configuration file used to produce an OpenStack All-In-One.
 * [Experience using Kolla-ansible to upgrade OpenStack from Ocata to Queens](https://blog.zhaw.ch/icclab/experience-using-kolla-ansible-to-upgrade-openstack-from-ocata-to-queens/)
 * [How to deploy and configure a bare metal controller using OpenStack ironic part 4](https://software.intel.com/en-us/blogs/2017/04/19/how-to-configure-and-deploy-a-bare-metal-controller-using-openstack-ironic-part-4)
 * [OpenStack-Kolla](https://shreddedbacon.com/post/openstack-kolla/)
+* [OpenStack Tacker and Service function chaining sfc with Kolla][(https://egonzalez.org/docs/build/html/2017-08-28-openstack-tacker-and-service-function-chaining-sfc-with-kolla.html)
