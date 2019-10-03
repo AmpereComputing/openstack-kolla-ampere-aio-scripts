@@ -38,3 +38,5 @@ Kolla globals.yml configuration file used to produce an OpenStack All-In-One.
 * [Testing containerized OpenStack services with kolla](http://jaormx.github.io/2017/testing-containerized-openstack-services-with-kolla/)
 * [Kolla Configuration](https://storage.gra1.cloud.ovh.net/v1/AUTH_dcaab5e32b234d56b626f72581e3644c/logs_46/676646/1/gate/openstack-tox-docs/a912ea4/html/configuration/kolla.html)
 * [How to Build an OpenStack Lab using Kolla-Ansible](https://www.packetflow.co.uk/openstack-installation-via-kolla-anisble/)
+* [Deploying OpenStack Kolla Ocata](https://jamesbenson.weebly.com/blog/deploying-openstack-kolla-ocata)
+* [Deploying OpenStack Part 2 - Post Deployment](https://jamesbenson.weebly.com/blog/deploying-openstack-part-2-post-deployment)
