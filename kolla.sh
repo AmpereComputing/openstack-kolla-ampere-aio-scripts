@@ -23,6 +23,9 @@ cp -R kolla-ansible/etc/kolla/* /etc/kolla
 # Copy the kolla-build.conf to /etc/kolla
 cp /usr/local/share/kolla/etc_examples/oslo-config-generator/kolla-build.conf /etc/kolla/
 
+# Get the Working Globals.yml
+wget https://raw.githubusercontent.com/AmpereComputing/openstack-kolla-aio-scripts/master/etc/kolla/globals.yml -O /etc/kolla/globals.yml
+
 # Build the container imagesa from source
 kolla-build -b ubuntu -t source
 
@@ -30,6 +33,9 @@ kolla-build -b ubuntu -t source
 kolla-genpwd
 
 # Deploy kolla-ansible all-in-one
+kolla-ansible -i /usr/local/share/kolla-ansible/ansible/inventory/all-in-one certificates
+kolla-ansible -i /usr/local/share/kolla-ansible/ansible/inventory/all-in-one bootstrap-servers
+kolla-ansible -i /usr/local/share/kolla-ansible/ansible/inventory/all-in-one prechecks
 kolla-ansible -i /usr/local/share/kolla-ansible/ansible/inventory/all-in-one deploy
 
 # Run Kolla-ansible post-deploy to generate the openrc info
