@@ -35,3 +35,4 @@ Kolla globals.yml configuration file used to produce an OpenStack All-In-One.
 * [OpenStack Tacker and Service function chaining sfc with Kolla](https://egonzalez.org/docs/build/html/2017-08-28-openstack-tacker-and-service-function-chaining-sfc-with-kolla.html)
 * [OpenStack kolla deployment from RDO packages](https://egonzalez.org/docs/build/html/2016-04-24-openstack-kolla-deployment-from-rdo-packages.html)
 * [Deploy OpenStack designate with kolla-ansible](https://egonzalez.org/docs/build/html/2017-02-22-deploy-openstack-designate-with-kolla-ansible.html)
+* [Testing containerized OpenStack services with kolla](http://jaormx.github.io/2017/testing-containerized-openstack-services-with-kolla/)
