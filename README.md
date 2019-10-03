@@ -16,9 +16,20 @@ A simple script that will execute the necessary steps to build and deploy OpenSt
 
 ### globals.yml
 
-Kolla globals.yml configuration file used to produce an OpenStack All-In-One.
-
 * [etc/kolla/globals.yml](etc/kolla/globals.yml)
+
+Kolla globals.yml configuration file used to produce an OpenStack All-In-One.
+The modifications to the global.yml to produce a working AIO are as follows.  
+Please note that the neutron_external_interface is actually a USB nic that was used to provide a second interface on the working system.   The interfaces must be changed to the appropriate working and active network interfaces for the deployment to be successful.
+
+```
+kolla_base_distro: "ubuntu"
+openstack_release: "8.1.0"
+kolla_internal_vip_address: "10.1.1.88"
+network_interface: "enp1s0"
+neutron_external_interface: "enx00051bb122ed"
+enable_haproxy: "no"
+```
 
 ## References
 
