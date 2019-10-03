@@ -30,3 +30,4 @@ Kolla globals.yml configuration file used to produce an OpenStack All-In-One.
 * [Migrating a running OpenStack to containerisation with Kolla](https://www.stackhpc.com/migrating-to-kolla.html)
 * [OpenStack Kolla All-In-One](https://www.openstackfaq.com/openstack-kolla-all-in-one/)
 * [Experience using Kolla-ansible to upgrade OpenStack from Ocata to Queens](https://blog.zhaw.ch/icclab/experience-using-kolla-ansible-to-upgrade-openstack-from-ocata-to-queens/)
+* [How to deploy and configure a bare metal controller using OpenStack ironic part 4](https://software.intel.com/en-us/blogs/2017/04/19/how-to-configure-and-deploy-a-bare-metal-controller-using-openstack-ironic-part-4)
