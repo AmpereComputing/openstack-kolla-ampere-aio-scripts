@@ -33,3 +33,4 @@ Kolla globals.yml configuration file used to produce an OpenStack All-In-One.
 * [How to deploy and configure a bare metal controller using OpenStack ironic part 4](https://software.intel.com/en-us/blogs/2017/04/19/how-to-configure-and-deploy-a-bare-metal-controller-using-openstack-ironic-part-4)
 * [OpenStack-Kolla](https://shreddedbacon.com/post/openstack-kolla/)
 * [OpenStack Tacker and Service function chaining sfc with Kolla][(https://egonzalez.org/docs/build/html/2017-08-28-openstack-tacker-and-service-function-chaining-sfc-with-kolla.html)
+* [OpenStack kolla deployment from RDO packages](https://egonzalez.org/docs/build/html/2016-04-24-openstack-kolla-deployment-from-rdo-packages.html)
