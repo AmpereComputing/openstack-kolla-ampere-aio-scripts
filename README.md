@@ -58,3 +58,10 @@ Modified to include the subnet and gateway information for the current example.
 * [Deploying OpenStack Kolla Ocata](https://jamesbenson.weebly.com/blog/deploying-openstack-kolla-ocata)
 * [Deploying OpenStack Part 2 - Post Deployment](https://jamesbenson.weebly.com/blog/deploying-openstack-part-2-post-deployment)
 * [Ansible and kolla a on Ubuntu](https://elatov.github.io/2018/01/openstack-ansible-and-kolla-on-ubuntu-1604/)
+
+
+## Paste Logs from Ubuntu 18.04 Libvirt failures
+
+* [libvirtd.log](http://paste.openstack.org/show/781097/)
+* [nova-compute.log](http://paste.openstack.org/show/781098/)
+
