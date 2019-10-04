@@ -51,3 +51,4 @@ enable_haproxy: "no"
 * [How to Build an OpenStack Lab using Kolla-Ansible](https://www.packetflow.co.uk/openstack-installation-via-kolla-anisble/)
 * [Deploying OpenStack Kolla Ocata](https://jamesbenson.weebly.com/blog/deploying-openstack-kolla-ocata)
 * [Deploying OpenStack Part 2 - Post Deployment](https://jamesbenson.weebly.com/blog/deploying-openstack-part-2-post-deployment)
+* [Ansible and kolla a on Ubuntu](https://elatov.github.io/2018/01/openstack-ansible-and-kolla-on-ubuntu-1604/)
