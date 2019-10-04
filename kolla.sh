@@ -50,3 +50,6 @@ source /etc/kolla/admin-openrc.sh
 
 # Run the deployment eval
 ./init-runonce
+
+# Remove the image
+rm -rf bionic-server-cloudimg-arm64.img
