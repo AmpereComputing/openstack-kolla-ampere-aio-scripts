@@ -28,7 +28,7 @@ cp /usr/local/share/kolla/etc_examples/oslo-config-generator/kolla-build.conf /e
 # Get the Working Globals.yml
 # wget https://raw.githubusercontent.com/AmpereComputing/openstack-kolla-aio-scripts/master/etc/kolla/globals.yml -O /etc/kolla/globals.yml
 cd $PROJECT_DIR
-cp etc/kolla/globals.yml /etc/kolla/global.yml
+cp etc/kolla/globals.yml /etc/kolla/globals.yml
 
 # Build the container imagesa from source
 kolla-build -b ubuntu -t source
