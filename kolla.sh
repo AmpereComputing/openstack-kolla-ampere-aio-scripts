@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+PROJECT_DIR=`pwd`
+
 # Update package cache and upgrade packages
 apt-get update -y && apt-get upgrade -y
 
@@ -24,7 +26,9 @@ cp -R kolla-ansible/etc/kolla/* /etc/kolla
 cp /usr/local/share/kolla/etc_examples/oslo-config-generator/kolla-build.conf /etc/kolla/
 
 # Get the Working Globals.yml
-wget https://raw.githubusercontent.com/AmpereComputing/openstack-kolla-aio-scripts/master/etc/kolla/globals.yml -O /etc/kolla/globals.yml
+# wget https://raw.githubusercontent.com/AmpereComputing/openstack-kolla-aio-scripts/master/etc/kolla/globals.yml -O /etc/kolla/globals.yml
+cd $PROJECT_DIR
+cp etc/kolla/globals.yml /etc/kolla/global.yml
 
 # Build the container imagesa from source
 kolla-build -b ubuntu -t source
@@ -45,4 +49,4 @@ kolla-ansible post-deploy
 source /etc/kolla/admin-openrc.sh
 
 # Run the deployment eval
-/usr/local/share/kolla-ansible/init-runonce
+./init-runonce
