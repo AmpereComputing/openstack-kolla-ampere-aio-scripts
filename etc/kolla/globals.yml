@@ -478,7 +478,7 @@ enable_haproxy: "no"
 #nova_backend_ceph: "{{ enable_ceph }}"
 
 # Valid options are [ qemu, kvm, vmware, xenapi ]
-#nova_compute_virt_type: "kvm"
+nova_compute_virt_type: "kvm"
 
 # The number of fake driver per compute node
 #num_nova_fake_per_node: 5

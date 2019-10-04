@@ -28,6 +28,7 @@ openstack_release: "8.1.0"
 kolla_internal_vip_address: "10.1.1.88"
 network_interface: "enp1s0"
 neutron_external_interface: "enx00051bb122ed"
+nova_compute_virt_type: "kvm"
 enable_haproxy: "no"
 ```
 ### init-runonce
