@@ -4,7 +4,7 @@
 apt-get update -y && apt-get upgrade -y
 
 # Install dependencies
-apt-get install screen rsync git python-dev libffi-dev gcc libssl-dev python-pip python-selinux python-setuptools python-virtualenv -y
+apt-get install screen rsync git curl python-dev libffi-dev gcc libssl-dev python-pip python-selinux python-setuptools python-virtualenv python-openstackclient qemu-kvm libvirt-bin virtinst bridge-utils cpu-checker -y
 # Change to /opt and get sources
 cd /opt
 git clone https://opendev.org/openstack/kolla
@@ -40,3 +40,9 @@ kolla-ansible -i /usr/local/share/kolla-ansible/ansible/inventory/all-in-one dep
 
 # Run Kolla-ansible post-deploy to generate the openrc info
 kolla-ansible post-deploy
+
+# Source OpenStack credentials
+source /etc/kolla/admin-openrc.sh
+
+# Run the deployment eval
+/usr/local/share/kolla-ansible/init-runonce
