@@ -30,6 +30,11 @@ network_interface: "enp1s0"
 neutron_external_interface: "enx00051bb122ed"
 enable_haproxy: "no"
 ```
+### init-runonce
+
+* [init-runonce](init-runonce)
+
+Modified to include the subnet and gateway information for the current example.
 
 ## References
 
