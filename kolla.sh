@@ -6,7 +6,18 @@ PROJECT_DIR=`pwd`
 apt-get update -y && apt-get upgrade -y
 
 # Install dependencies
-apt-get install screen rsync git curl python-dev libffi-dev gcc libssl-dev python-pip python-selinux python-setuptools python-virtualenv python-openstackclient qemu-kvm libvirt-bin virtinst bridge-utils cpu-checker -y
+apt-get install screen rsync git curl python-dev libffi-dev gcc libssl-dev python-pip python-selinux python-setuptools python-virtualenv python-openstackclient qemu-kvm bridge-utils cpu-checker -y
+
+# Configure libvirt for kolla
+systemctl stop libvirt-bin 
+systemctl disable libvirt-bin
+systemctl stop libvirtd
+systemctl disable libvirtd
+
+# Disable Apparmor libvirt profile
+apparmor_parser -R /etc/apparmor.d/usr.sbin.libvirtd
+
+
 # Change to /opt and get sources
 cd /opt
 git clone https://opendev.org/openstack/kolla
