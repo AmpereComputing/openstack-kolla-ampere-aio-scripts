@@ -6,8 +6,9 @@ PROJECT_DIR=`pwd`
 apt-get update -y && apt-get upgrade -y
 
 # Install dependencies
-apt-get install screen rsync git curl python-dev libffi-dev gcc libssl-dev python-pip python-selinux python-setuptools python-virtualenv python-openstackclient qemu-kvm bridge-utils cpu-checker -y
+apt-get install aptitude docker.io screen rsync git curl python-dev libffi-dev gcc libssl-dev python-pip python-selinux python-setuptools python-virtualenv python-openstackclient bridge-utils cpu-checker "libvirt-daemon*" qemu-system qemu-efi virtinst virt-manager -y
 
+pause
 # Configure libvirt for kolla
 systemctl stop libvirt-bin 
 systemctl disable libvirt-bin
@@ -24,6 +25,8 @@ git clone https://opendev.org/openstack/kolla
 git clone https://opendev.org/openstack/kolla-ansible
 
 # Install Kolla and Kolla-ansible
+pip install -U ansible
+pip install -U python-docker 
 pip install ./kolla/
 pip install ./kolla-ansible/
 
@@ -42,7 +45,7 @@ cd $PROJECT_DIR
 cp etc/kolla/globals.yml /etc/kolla/globals.yml
 
 # Build the container imagesa from source
-kolla-build -b ubuntu -t source
+kolla-build -b debian -t source
 
 # Generate passwords for use with kolla-ansible
 kolla-genpwd
