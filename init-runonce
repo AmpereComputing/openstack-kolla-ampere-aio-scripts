@@ -16,10 +16,16 @@ IMAGE_PATH=/opt/cache/files/
 #IMAGE_NAME=cirros
 #IMAGE_TYPE=linux
 
-IMAGE_URL=https://cloud-images.ubuntu.com/daily/server/bionic/current/bionic-server-cloudimg-arm64.img
-IMAGE=bionic-server-cloudimg-arm64.img
-IMAGE_NAME=bionic-server-cloudimg-arm64-qcow2
+# Known Working Image
+IMAGE_URL=https://dl.fedoraproject.org/pub/alt/atomic/stable/Fedora-29-updates-20191001.0/AtomicHost/aarch64/images/Fedora-AtomicHost-29-20191001.0.aarch64.qcow2
+IMAGE=Fedora-AtomicHost-29-20191001.0.aarch64.qcow2
+IMAGE_NAME=fedora-atomichost-29-aarch64-qcow2
 IMAGE_TYPE=linux
+
+#IMAGE_URL=https://cloud-images.ubuntu.com/daily/server/bionic/current/bionic-server-cloudimg-arm64.img
+#IMAGE=bionic-server-cloudimg-arm64.img
+#IMAGE_NAME=bionic-server-cloudimg-arm64-qcow2
+#IMAGE_TYPE=linux
 
 # This EXT_NET_CIDR is your public network,that you want to connect to the internet via.
 ENABLE_EXT_NET=${ENABLE_EXT_NET:-1}
@@ -71,7 +77,7 @@ fi
 
 echo Creating glance image.
 openstack image create --disk-format qcow2 --container-format bare --public \
-    --property os_type=${IMAGE_TYPE} architecture=${ARCH} --file ${IMAGE_PATH}/${IMAGE} ${IMAGE_NAME}
+    --property os_type=${IMAGE_TYPE} --file ${IMAGE_PATH}/${IMAGE} ${IMAGE_NAME}
 
 echo Configuring neutron.
 if [[ $ENABLE_EXT_NET -eq 1 ]]; then

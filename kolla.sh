@@ -26,7 +26,6 @@ git clone https://opendev.org/openstack/kolla-ansible
 
 # Install Kolla and Kolla-ansible
 pip install -U ansible
-pip install -U python-docker 
 pip install ./kolla/
 pip install ./kolla-ansible/
 
