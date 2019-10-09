@@ -6,6 +6,11 @@
 
 Scripts and information for reproducing an OpenStack All-In-One deployment on Ampere eMAG systems using OpenStack Kolla and Kolla-Ansible.
 
+# Installation
+
+1. Download the [Debian Buster 10.1 ARM64](https://gensho.ftp.acc.umu.se/mirror/cdimage/release/10.1.0/arm64/iso-cd/debian-10.1.0-arm64-netinst.iso)
+
+
 ## Assets
 
 ### kolla.sh
