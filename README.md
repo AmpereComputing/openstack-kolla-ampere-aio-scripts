@@ -12,7 +12,7 @@ Scripts and information for reproducing an OpenStack All-In-One deployment on Am
 
 ## Deploying Kolla Images
 
-<script id="asciicast-pyp5Qfez1YOZh4mWZBE9avdmr" src="https://asciinema.org/a/pyp5Qfez1YOZh4mWZBE9avdmr.js" async></script>
+<script id="asciicast-pyp5Qfez1YOZh4mWZBE9avdmr" src="https://asciinema.org/a/pyp5Qfez1YOZh4mWZBE9avdmr.js" async data-autoplay="true" data-size="small" data-speed="2"></script>
 
 
 ## Assets
