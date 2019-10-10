@@ -10,6 +10,10 @@ Scripts and information for reproducing an OpenStack All-In-One deployment on Am
 
 1. Download the netboot iso for [Debian Buster 10.1 ARM64](https://gensho.ftp.acc.umu.se/mirror/cdimage/release/10.1.0/arm64/iso-cd/debian-10.1.0-arm64-netinst.iso)
 
+## Deploying Kolla Images
+
+<script id="asciicast-pyp5Qfez1YOZh4mWZBE9avdmr" src="https://asciinema.org/a/pyp5Qfez1YOZh4mWZBE9avdmr.js" async></script>
+
 
 ## Assets
 
