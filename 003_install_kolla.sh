@@ -1,19 +1,22 @@
 #!/usr/bin/env bash
-
 PROJECT_DIR=`pwd`
+LOGFILE=$PROJECT_DIR/003_install_kolla.log
 
-# Update package cache and upgrade packages
-apt-get update -y && apt-get upgrade -y
+exec >> $LOGFILE 2>&1
 
-# Install dependencies
-apt-get install aptitude docker.io screen rsync git curl python-dev libffi-dev gcc libssl-dev python-pip python-selinux python-setuptools python-virtualenv python-openstackclient bridge-utils cpu-checker "libvirt-daemon*" qemu-system qemu-efi virtinst virt-manager -y
-
-pause
 # Configure libvirt for kolla
+# disable libvirt
 systemctl stop libvirt-bin 
 systemctl disable libvirt-bin
 systemctl stop libvirtd
 systemctl disable libvirtd
+
+# Open-Iscsi
+systemctl stop open-iscsi.service
+systemctl dsiable open-iscsi.service
+systemctl stop iscsid.service
+systemctl disable iscsid.service
+
 
 # Disable Apparmor libvirt profile
 apparmor_parser -R /etc/apparmor.d/usr.sbin.libvirtd
@@ -26,7 +29,6 @@ git clone https://opendev.org/openstack/kolla-ansible
 
 # Install Kolla and Kolla-ansible
 pip install -U ansible
-pip install -U python-docker 
 pip install ./kolla/
 pip install ./kolla-ansible/
 
