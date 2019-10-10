@@ -8,6 +8,8 @@ kolla-ansible post-deploy
 # Source OpenStack credentials
 source /etc/kolla/admin-openrc.sh
 
+# install openstack client
+pip install -U openstackclient
 # Run the deployment eval
 ./init-runonce
 

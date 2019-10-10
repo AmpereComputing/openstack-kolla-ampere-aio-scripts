@@ -32,7 +32,7 @@ openstack_release: "8.1.0"
 # in "OpenStack options" section, and set this value to the IP of your
 # 'network_interface' as set in the Networking section below.
 #kolla_internal_vip_address: "10.10.10.254"
-kolla_internal_vip_address: "10.1.1.92"
+kolla_internal_vip_address: "10.1.1.77"
 
 # This is the DNS name that maps to the kolla_internal_vip_address VIP. By
 # default it is the same as kolla_internal_vip_address.
@@ -238,6 +238,7 @@ enable_cinder_backend_lvm: "yes"
 #enable_cinder_backend_quobyte: "no"
 #enable_cloudkitty: "no"
 #enable_collectd: "no"
+enable_collectd: "yes"
 #enable_congress: "no"
 #enable_cyborg: "no"
 #enable_designate: "no"
@@ -247,7 +248,7 @@ enable_cinder_backend_lvm: "yes"
 #enable_fluentd: "yes"
 #enable_freezer: "no"
 #enable_gnocchi: "no"
-#enable_grafana: "no"
+enable_grafana: "yes"
 #enable_heat: "{{ enable_openstack_core | bool }}"
 #enable_horizon: "{{ enable_openstack_core | bool }}"
 #enable_horizon_blazar: "{{ enable_blazar | bool }}"
