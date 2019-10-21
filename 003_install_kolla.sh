@@ -6,14 +6,16 @@ exec >> $LOGFILE 2>&1
 
 # Configure libvirt for kolla
 # disable libvirt
-systemctl stop libvirt-bin 
-systemctl disable libvirt-bin
-systemctl stop libvirtd
-systemctl disable libvirtd
+#systemctl stop libvirt-bin 
+#systemctl disable libvirt-bin
+
+systemctl stop libvirtd.service
+systemctl disable libvirtd.service
 
 # Open-Iscsi
 systemctl stop open-iscsi.service
 systemctl dsiable open-iscsi.service
+
 systemctl stop iscsid.service
 systemctl disable iscsid.service
 
@@ -33,7 +35,7 @@ pip install ./kolla/
 pip install ./kolla-ansible/
 
 # Prep the Kolla configuration directory
-mkdir /etc/kolla
+mkdir -p /etc/kolla/config
 
 # Copy the base templates
 cp -R kolla-ansible/etc/kolla/* /etc/kolla
@@ -45,3 +47,14 @@ cp /usr/local/share/kolla/etc_examples/oslo-config-generator/kolla-build.conf /e
 # wget https://raw.githubusercontent.com/AmpereComputing/openstack-kolla-aio-scripts/master/etc/kolla/globals.yml -O /etc/kolla/globals.yml
 cd $PROJECT_DIR
 cp etc/kolla/globals.yml /etc/kolla/globals.yml
+
+# Create /etc/kolla/config/global.conf
+
+cat << EOF > /etc/kolla/config/magnum.conf
+# Adjust Magnum configuration to allow for fedora-atomic k8s templates
+#[trust]
+#cluster_user_trust = True
+#cloud_provider_enabled = True
+EOF
+
+

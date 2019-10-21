@@ -11,21 +11,10 @@ ARCH=$(uname -m)
 IMAGE_PATH=/opt/cache/files/
 
 # Remove Cirros
-#IMAGE_URL=http://download.cirros-cloud.net/0.4.0/
-#IMAGE=cirros-0.4.0-${ARCH}-disk.img
-#IMAGE_NAME=cirros
-#IMAGE_TYPE=linux
-
-# Known Working Image
-IMAGE_URL=https://dl.fedoraproject.org/pub/alt/atomic/stable/Fedora-29-updates-20191001.0/AtomicHost/aarch64/images/Fedora-AtomicHost-29-20191001.0.aarch64.qcow2
-IMAGE=Fedora-AtomicHost-29-20191001.0.aarch64.qcow2
-IMAGE_NAME=fedora-atomichost-29-aarch64-qcow2
+IMAGE_URL=http://download.cirros-cloud.net/0.4.0/
+IMAGE=cirros-0.4.0-${ARCH}-disk.img
+IMAGE_NAME=cirros-${ARCH}
 IMAGE_TYPE=linux
-
-#IMAGE_URL=https://cloud-images.ubuntu.com/daily/server/bionic/current/bionic-server-cloudimg-arm64.img
-#IMAGE=bionic-server-cloudimg-arm64.img
-#IMAGE_NAME=bionic-server-cloudimg-arm64-qcow2
-#IMAGE_TYPE=linux
 
 # This EXT_NET_CIDR is your public network,that you want to connect to the internet via.
 ENABLE_EXT_NET=${ENABLE_EXT_NET:-1}

@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+source /etc/kolla/admin-openrc.sh
 apt-get install unzip -y
 cd /usr/local/bin
 wget -cv https://releases.hashicorp.com/terraform/0.12.10/terraform_0.12.10_linux_arm.zip

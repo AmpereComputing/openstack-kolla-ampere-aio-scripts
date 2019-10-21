@@ -24,7 +24,7 @@ kolla_install_type: "source"
 openstack_release: "8.1.0"
 
 # Location of configuration overrides
-#node_custom_config: "/etc/kolla/config"
+node_custom_config: "/etc/kolla/config"
 
 # This should be a VIP, an unused IP on your network that will float between
 # the hosts running keepalived for high-availability. If you want to run an
@@ -165,6 +165,7 @@ neutron_external_interface: "enx00051bb122ed"
 # TLS can be enabled.  When TLS is enabled, certificates must be provided to
 # allow clients to perform authentication.
 #kolla_enable_tls_external: "no"
+#kolla_enable_tls_external: "yes"
 #kolla_external_fqdn_cert: "{{ node_config }}/certificates/haproxy.pem"
 
 ################
@@ -214,6 +215,7 @@ enable_haproxy: "no"
 # OpenStack services can be enabled or disabled with these options
 #enable_aodh: "no"
 #enable_barbican: "no"
+#enable_barbican: "yes"
 #enable_blazar: "no"
 # NOTE: This variable has been deprecated and will be removed in the U cycle.
 #enable_cadf_notifications: "no"
@@ -226,9 +228,10 @@ enable_haproxy: "no"
 #enable_ceph_nfs: "no"
 #enable_ceph_dashboard: "{{ enable_ceph | bool }}"
 #enable_chrony: "yes"
-enable_cinder: "yes"
-enable_cinder_backend_lvm: "yes"
-#enable_cinder: "no"
+# UNCOMMENT NEXT TWO LINES TO ENABLE CONDER W/ LVM
+# enable_cinder: "yes"
+# enable_cinder_backend_lvm: "yes"
+enable_cinder: "no"
 #enable_cinder_backup: "yes"
 #enable_cinder_backend_hnas_nfs: "no"
 #enable_cinder_backend_iscsi: "{{ enable_cinder_backend_lvm | bool or enable_cinder_backend_zfssa_iscsi | bool }}"
