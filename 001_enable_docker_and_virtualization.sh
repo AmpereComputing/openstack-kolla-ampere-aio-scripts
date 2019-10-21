@@ -6,10 +6,7 @@ exec >> $LOGFILE 2>&1
 # Update package cache and upgrade packages
 apt-get update -y && apt-get upgrade -y
 
-# Install dependencies
-apt-get install 
-
-TOOLS="aptitude screen rsync git curl byobu" 
+TOOLS="aptitude screen rsync git curl byobu asciinema" 
 DOCKER="docker.io" 
 PYTHON2="python-dev python-pip python-selinux python-setuptools python-virtualenv"
 PYTHON3="python3-dev python3-pip python3-selinux python3-setuptools python3-virtualenv"
@@ -24,10 +21,6 @@ echo "Installing tooling"
 apt-get install -y $TOOLS
 echo "Installing Python Development"
 
-# Switch to Using Python3 by default
-echo "Running Update Alternatives"
-update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
-update-alternatives --install /usr/bin/python python /usr/bin/python3.7 2
 echo "Installing Python & Dev Packages"
 apt-get install -y $PYTHON3 $DEVEL
 pip3 install -U pip
