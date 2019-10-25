@@ -53,10 +53,15 @@ The follow is the basic pattern for deploying using the supplied scripts.
 ## Building Kolla Images
 
 Container images can be rebuilt at any time through the use of the `kolla-build` command.
-
-Kolla supports different operating system options for the Docker containers.  During the process of building this both Ubunt and Debian were attempted.  Currently Debian was fully funcitonal where asat the time this was created Ubuntu 18.04 was unable to sucessfully deploy a virtualmachine with Libvirt running containerized.   The Debian functionality including AARCH64 support was contributed by Linaro, whom currently still actively contributes to the maintaince of the integration.
+Kolla supports different operating system options for the Docker containers.
+During the process of building this both Ubuntu and Debian were attempted.
+Currently Debian was fully funcitonal where at the time this was created Ubuntu 18.04 was unable to sucessfully deploy a virtual machine with Libvirt running containerized.
+The Debian functionality including AARCH64 support was contributed by Linaro, whom currently still actively contributes to the maintaince of the AARCH64 integration.
 
 ###  Paste Logs from Ubuntu 18.04 Libvirt failures
+
+For those interested the following information was gathered during the troubleshooting of the issues with Livbvirtd containerized in this deployment
+
   * [libvirtd.log](http://paste.openstack.org/show/781097/)
   * [nova-compute.log](http://paste.openstack.org/show/781098/)
 
