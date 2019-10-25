@@ -8,7 +8,9 @@ Scripts and information for reproducing an OpenStack All-In-One deployment on Am
 
 # Installation
 
-## Requirements
+
+
+## Operating System Requirements
 
 * Netboot iso for [Debian Buster 10.1 ARM64](https://gensho.ftp.acc.umu.se/mirror/cdimage/release/10.1.0/arm64/iso-cd/debian-10.1.0-arm64-netinst.iso)
 
@@ -18,13 +20,16 @@ Scripts and information for reproducing an OpenStack All-In-One deployment on Am
 
 <script  id="asciicast-276985" src="https://asciinema.org/a/276985.js" async data-autoplay="true" data-size="small" data-speed="2"></script>
 
-## Assets
+## Script Assets
 
-### kolla.sh
-
-A simple script that will execute the necessary steps to build and deploy OpenStack via container images using Kolla and Kolla-Ansible.
-
-* [kolla.sh](kolla.sh) 
+* [001_enable_docker_and_virtualization.sh:](001_enable_docker_and_virtualization.sh) Installs prerequisite packages and configures docker and kvm virtualization
+* [002_install_kolla.sh:](002_install_kolla.sh) Installs Kolla and Kolla-ansible from source
+* [003_build_containers.sh:](003_build_containers.sh) Uses `kolla-build` to build Debian containers from source on the deployment host.  Process wrapped in `asciinema` for recording.
+* [004_kolla_pre_deploy.sh:](004_kolla_pre_deploy.sh) Runs kolla-ansible generate-certificates, prechecks, bootstrap-servers
+* [005_kolla_deploy.sh:](005_kolla_deploy.sh) Runs kolla-ansible deploy wrapped in Acsiinema for rerecording the process.
+* [006_post_deploy.sh:](006_post_deploy.sh) Runs kolla-ansible post-deploy, and init-runonce.
+* [007_terraform.sh:](007_terraform.sh) Installs terraform, downloads terraform-openstack-images, and deploys to OpenStack AIO
+* [init-runonce:](init-runonce) Modified init-runonce with values that will work on network.
 
 ### globals.yml
 
