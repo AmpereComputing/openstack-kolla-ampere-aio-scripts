@@ -8,7 +8,7 @@ Scripts and information for reproducing an OpenStack All-In-One deployment on Am
 
 ## Description
 
-This repository contains script & file assets to build from source & deploy a containerized OpenStack all-in-one on an Ampere eMAG server. The server is installed with standard Debian version 10.1.0 arm64 and OpenStack 8.1.0 Stein. In this configuration, the administrator can create virtual instances using various preloaded aarch64 operating systems (Debian, Fedora, Fedora-Atomic, Ubuntu, K3OS) through the Horizion web interface.
+This repository contains script & file assets to build from source & deploy a containerized OpenStack All-In-One (AIO) on an Ampere eMAG server. The server is installed with standard Debian version 10.1.0 arm64 and OpenStack 8.1.0 Stein. In this configuration, the administrator can create virtual instances using various preloaded aarch64 operating systems (Debian, Fedora, Fedora-Atomic, Ubuntu, K3OS) through the Horizion web interface.
 [OpenStack Kolla](https://opendev.org/openstack/kolla) is used to build containers from source. Kolla-ansible is used to install OpenStack as an All-In-One deployment scenerio.
 
 <script  id="asciicast-276985" src="https://asciinema.org/a/276985.js" async data-autoplay="true" data-size="small" data-speed="2"></script>
@@ -19,7 +19,8 @@ This repository contains script & file assets to build from source & deploy a co
 
 ## Installation Overview
 
-The goal of the included scripts are to provide an easy way to replicate an OpenStack AIO deployment using Kolla and Kolla-ansible on AARCH64.  The follow is the basic pattern for deploying.
+The goal of the included scripts are to provide an easy way to replicate an OpenStack AIO deployment using Kolla and Kolla-ansible on AARCH64.
+The follow is the basic pattern for deploying using the supplied scripts.
 
 1. Deploy a minimal operating system with ssh access and git installed.
 1. Download this repository to the deployment target
@@ -27,13 +28,24 @@ The goal of the included scripts are to provide an easy way to replicate an Open
 
 ### Script Assets
 
-* [001_enable_docker_and_virtualization.sh:](001_enable_docker_and_virtualization.sh) Installs prerequisite packages and configures docker and kvm virtualization
-* [002_install_kolla.sh:](002_install_kolla.sh) Installs Kolla and Kolla-ansible from source
-* [003_build_containers.sh:](003_build_containers.sh) Uses `kolla-build` to build Debian containers from source on the deployment host.  Process wrapped in `asciinema` for recording.
-* [004_kolla_pre_deploy.sh:](004_kolla_pre_deploy.sh) Runs kolla-ansible generate-certificates, prechecks, bootstrap-servers
-* [005_kolla_deploy.sh:](005_kolla_deploy.sh) Runs kolla-ansible deploy wrapped in Acsiinema for rerecording the process.
-* [006_post_deploy.sh:](006_post_deploy.sh) Runs kolla-ansible post-deploy, and init-runonce.
-* [007_terraform.sh:](007_terraform.sh) Installs terraform, downloads terraform-openstack-images, and deploys to OpenStack AIO
+* [001_enable_docker_and_virtualization.sh:](001_enable_docker_and_virtualization.sh)
+  * Installs prerequisite packages and configures docker and kvm virtualization
+* [002_install_kolla.sh:](002_install_kolla.sh)
+  * Installs Kolla and Kolla-ansible from source
+* [003_build_containers.sh:](003_build_containers.sh)
+  * Uses `kolla-build` to build Debian containers from source on the deployment host.
+  * Process wrapped in `asciinema` for recording build console output.
+* [004_kolla_pre_deploy.sh:](004_kolla_pre_deploy.sh)
+  * Runs kolla-ansible generate-certificates, bootstrap-servers and prechecks before deploy
+* [005_kolla_deploy.sh:](005_kolla_deploy.sh)
+  * Runs kolla-ansible deploy wrapped in Acsiinema for recording deploy console output.
+* [006_post_deploy.sh:](006_post_deploy.sh)
+  * Runs kolla-ansible post-deploy to genterate credentials in /etc/kolla/admin-openrc.sh
+  * Executes init-runonce with information specific to our network deployment in order to prepopulate project, network, subnet, image, keys for admin
+* [007_terraform.sh:](007_terraform.sh)
+  * Installs [Terraform](https://terraform.io) to use to automate interaction with the cloud resources available on the deployed OpenStack AIO
+  * Downloads source for [terraform-openstack-images](https://github.com/amperecomputing/terraform-openstack-images]
+  * Runs terraform to deploy a base set of AARCH64 QCOW2 images onto the OpenStack AIO
 * [init-runonce:](init-runonce) Modified init-runonce with values that will work on network.
 
 
@@ -66,6 +78,8 @@ enable_haproxy: "no"
 ```
 
 ## References
+
+The following information assets were acquired during the research process of this endeavour.
 
 * [Kolla Image Building](https://docs.openstack.org/kolla/latest/admin/image-building.html)
 * [Kolla Ansible AIO Quickstart](https://docs.openstack.org/openstack-ansible/latest/user/aio/quickstart.html)
