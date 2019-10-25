@@ -24,7 +24,7 @@ The follow is the basic pattern for deploying using the supplied scripts.
 
 1. Deploy a minimal operating system with ssh access and git installed.
 1. Download this repository to the deployment target
-1. Make changes to [etc/kolla/globals.yml](etc/kolla/globals.yml)
+1. Make changes to [etc/kolla/globals.yml](etc/kolla/globals.yml) and [init-runonce](init-runonce) for your deployment needs.
 1. Run scripts from this repository in numerical order on the target host.
 
 ### Script Assets

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 PROJECT_DIR=`pwd`
-LOGFILE=$PROJECT_DIR/003_install_kolla.log
+LOGFILE=$PROJECT_DIR/002_install_kolla.log
 
 exec >> $LOGFILE 2>&1
 
