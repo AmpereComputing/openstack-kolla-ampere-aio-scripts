@@ -2,21 +2,36 @@
 
 # openstack-kolla-ampere-aio-scripts
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-
 Scripts and information for reproducing an OpenStack All-In-One deployment on Ampere eMAG systems using OpenStack Kolla and Kolla-Ansible.
 
-# Installation
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
+# Description
+
+This repository contains assets to deploy an OpenStack all-in-one on Ampere eMAG server. The server is installed with standard Debian version 10.1.0 arm64 and OpenStack 8.1.0 Stein. In this configuration, the administrator can create virtual instances using various preloaded aarch64 operating systems (Debian, Fedora, Fedora-Atomic, Ubuntu, K3OS) through the Horizion web interface.
+[OpenStack Kolla](https://opendev.org/openstack/kolla) is used to build containers from source. Kolla-ansible is used to install OpenStack as an All-In-One deployment scenerio.
 
 
 ## Operating System Requirements
 
 * Netboot iso for [Debian Buster 10.1 ARM64](https://gensho.ftp.acc.umu.se/mirror/cdimage/release/10.1.0/arm64/iso-cd/debian-10.1.0-arm64-netinst.iso)
 
+# Installation Overview
+
+The goal of the included scripts are to provide an easy way to replicate an OpenStack AIO deployment using Kolla and Kolla-ansible on AARCH64.  The follow is the basic pattern for deploying.
+
+1. Deploy a minimal operating system
+1. Download this repository to the deployment target
+1. Run scripts from this repository in numerical order on the target host.
+
+
 ## Building Kolla Images
 
-## Deploying Kolla Images
+Container images can be rebuilt at any time through the use of the `kolla-build` command.
+
+Kolla supports different operating system options for the Docker containers.  During the process of building this both Ubunt and Debian were attempted.  Currently Debian was fully funcitonal where asat the time this was created Ubuntu 18.04 was unable to sucessfully deploy a virtualmachine with Libvirt running containerized.   The Debian functionality including AARCH64 support was contributed by Linaro, whom currently still actively contributes to the maintaince of the integration.
+
+## Deploying Kolla Images Process
 
 <script  id="asciicast-276985" src="https://asciinema.org/a/276985.js" async data-autoplay="true" data-size="small" data-speed="2"></script>
 
@@ -40,7 +55,7 @@ The modifications to the global.yml to produce a working AIO are as follows.
 Please note that the neutron_external_interface is actually a USB nic that was used to provide a second interface on the working system.   The interfaces must be changed to the appropriate working and active network interfaces for the deployment to be successful.
 
 ```
-kolla_base_distro: "ubuntu"
+kolla_base_distro: "debian"
 openstack_release: "8.1.0"
 kolla_internal_vip_address: "10.1.1.88"
 network_interface: "enp1s0"
