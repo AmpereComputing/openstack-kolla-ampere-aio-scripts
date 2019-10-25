@@ -25,6 +25,17 @@ The goal of the included scripts are to provide an easy way to replicate an Open
 1. Download this repository to the deployment target
 1. Run scripts from this repository in numerical order on the target host.
 
+### Script Assets
+
+* [001_enable_docker_and_virtualization.sh:](001_enable_docker_and_virtualization.sh) Installs prerequisite packages and configures docker and kvm virtualization
+* [002_install_kolla.sh:](002_install_kolla.sh) Installs Kolla and Kolla-ansible from source
+* [003_build_containers.sh:](003_build_containers.sh) Uses `kolla-build` to build Debian containers from source on the deployment host.  Process wrapped in `asciinema` for recording.
+* [004_kolla_pre_deploy.sh:](004_kolla_pre_deploy.sh) Runs kolla-ansible generate-certificates, prechecks, bootstrap-servers
+* [005_kolla_deploy.sh:](005_kolla_deploy.sh) Runs kolla-ansible deploy wrapped in Acsiinema for rerecording the process.
+* [006_post_deploy.sh:](006_post_deploy.sh) Runs kolla-ansible post-deploy, and init-runonce.
+* [007_terraform.sh:](007_terraform.sh) Installs terraform, downloads terraform-openstack-images, and deploys to OpenStack AIO
+* [init-runonce:](init-runonce) Modified init-runonce with values that will work on network.
+
 
 ## Building Kolla Images
 
@@ -35,17 +46,6 @@ Kolla supports different operating system options for the Docker containers.  Du
 ###  Paste Logs from Ubuntu 18.04 Libvirt failures
   * [libvirtd.log](http://paste.openstack.org/show/781097/)
   * [nova-compute.log](http://paste.openstack.org/show/781098/)
-
-## Script Assets
-
-* [001_enable_docker_and_virtualization.sh:](001_enable_docker_and_virtualization.sh) Installs prerequisite packages and configures docker and kvm virtualization
-* [002_install_kolla.sh:](002_install_kolla.sh) Installs Kolla and Kolla-ansible from source
-* [003_build_containers.sh:](003_build_containers.sh) Uses `kolla-build` to build Debian containers from source on the deployment host.  Process wrapped in `asciinema` for recording.
-* [004_kolla_pre_deploy.sh:](004_kolla_pre_deploy.sh) Runs kolla-ansible generate-certificates, prechecks, bootstrap-servers
-* [005_kolla_deploy.sh:](005_kolla_deploy.sh) Runs kolla-ansible deploy wrapped in Acsiinema for rerecording the process.
-* [006_post_deploy.sh:](006_post_deploy.sh) Runs kolla-ansible post-deploy, and init-runonce.
-* [007_terraform.sh:](007_terraform.sh) Installs terraform, downloads terraform-openstack-images, and deploys to OpenStack AIO
-* [init-runonce:](init-runonce) Modified init-runonce with values that will work on network.
 
 ## globals.yml
 
