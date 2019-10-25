@@ -45,7 +45,7 @@ The follow is the basic pattern for deploying using the supplied scripts.
   * Executes init-runonce with information specific to our network deployment in order to prepopulate project, network, subnet, image, keys for admin
 * [007_terraform.sh:](007_terraform.sh)
   * Installs [Terraform](https://terraform.io) to use to automate interaction with the cloud resources available on the deployed OpenStack AIO
-  * Downloads source for [terraform-openstack-images](https://github.com/amperecomputing/terraform-openstack-images]
+  * Downloads source for [terraform-openstack-images](https://github.com/amperecomputing/terraform-openstack-images)
   * Runs terraform to deploy a base set of AARCH64 QCOW2 images onto the OpenStack AIO
 * [init-runonce:](init-runonce) Modified init-runonce with values that will work on network.
 
