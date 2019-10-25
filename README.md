@@ -31,6 +31,10 @@ Container images can be rebuilt at any time through the use of the `kolla-build`
 
 Kolla supports different operating system options for the Docker containers.  During the process of building this both Ubunt and Debian were attempted.  Currently Debian was fully funcitonal where asat the time this was created Ubuntu 18.04 was unable to sucessfully deploy a virtualmachine with Libvirt running containerized.   The Debian functionality including AARCH64 support was contributed by Linaro, whom currently still actively contributes to the maintaince of the integration.
 
+###  Paste Logs from Ubuntu 18.04 Libvirt failures
+  * [libvirtd.log](http://paste.openstack.org/show/781097/)
+  * [nova-compute.log](http://paste.openstack.org/show/781098/)
+
 ## Deploying Kolla Images Process
 
 <script  id="asciicast-276985" src="https://asciinema.org/a/276985.js" async data-autoplay="true" data-size="small" data-speed="2"></script>
@@ -85,10 +89,3 @@ enable_haproxy: "no"
 * [Deploying OpenStack Kolla Ocata](https://jamesbenson.weebly.com/blog/deploying-openstack-kolla-ocata)
 * [Deploying OpenStack Part 2 - Post Deployment](https://jamesbenson.weebly.com/blog/deploying-openstack-part-2-post-deployment)
 * [Ansible and kolla a on Ubuntu](https://elatov.github.io/2018/01/openstack-ansible-and-kolla-on-ubuntu-1604/)
-
-
-## Paste Logs from Ubuntu 18.04 Libvirt failures
-
-* [libvirtd.log](http://paste.openstack.org/show/781097/)
-* [nova-compute.log](http://paste.openstack.org/show/781098/)
-
