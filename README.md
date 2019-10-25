@@ -6,7 +6,7 @@ Scripts and information for reproducing an OpenStack All-In-One deployment on Am
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-# Description
+## Description
 
 This repository contains assets to deploy an OpenStack all-in-one on Ampere eMAG server. The server is installed with standard Debian version 10.1.0 arm64 and OpenStack 8.1.0 Stein. In this configuration, the administrator can create virtual instances using various preloaded aarch64 operating systems (Debian, Fedora, Fedora-Atomic, Ubuntu, K3OS) through the Horizion web interface.
 [OpenStack Kolla](https://opendev.org/openstack/kolla) is used to build containers from source. Kolla-ansible is used to install OpenStack as an All-In-One deployment scenerio.
@@ -16,7 +16,7 @@ This repository contains assets to deploy an OpenStack all-in-one on Ampere eMAG
 
 * Netboot iso for [Debian Buster 10.1 ARM64](https://gensho.ftp.acc.umu.se/mirror/cdimage/release/10.1.0/arm64/iso-cd/debian-10.1.0-arm64-netinst.iso)
 
-# Installation Overview
+## Installation Overview
 
 The goal of the included scripts are to provide an easy way to replicate an OpenStack AIO deployment using Kolla and Kolla-ansible on AARCH64.  The follow is the basic pattern for deploying.
 
@@ -46,7 +46,7 @@ Kolla supports different operating system options for the Docker containers.  Du
 * [007_terraform.sh:](007_terraform.sh) Installs terraform, downloads terraform-openstack-images, and deploys to OpenStack AIO
 * [init-runonce:](init-runonce) Modified init-runonce with values that will work on network.
 
-### globals.yml
+## globals.yml
 
 * [etc/kolla/globals.yml](etc/kolla/globals.yml)
 
@@ -63,11 +63,6 @@ neutron_external_interface: "enx00051bb122ed"
 nova_compute_virt_type: "kvm"
 enable_haproxy: "no"
 ```
-### init-runonce
-
-* [init-runonce](init-runonce)
-
-Modified to include the subnet and gateway information for the current example.
 
 ## References
 
