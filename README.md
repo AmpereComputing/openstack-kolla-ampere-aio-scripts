@@ -59,13 +59,14 @@ Kolla supports different operating system options for the Docker containers.  Du
   * [libvirtd.log](http://paste.openstack.org/show/781097/)
   * [nova-compute.log](http://paste.openstack.org/show/781098/)
 
-## globals.yml
+## Configuration 
+
+Configuration is done via the included globals.yml file. You will need to edit this file and change necessary information prior to the deploy process.
 
 * [etc/kolla/globals.yml](etc/kolla/globals.yml)
 
-Kolla globals.yml configuration file used to produce an OpenStack All-In-One.
+The included Kolla globals.yml configuration file used to produce an OpenStack All-In-One.
 The modifications to the global.yml to produce a working AIO are as follows.  
-Please note that the neutron_external_interface is actually a USB nic that was used to provide a second interface on the working system.   The interfaces must be changed to the appropriate working and active network interfaces for the deployment to be successful.
 
 ```
 kolla_base_distro: "debian"
@@ -76,6 +77,9 @@ neutron_external_interface: "enx00051bb122ed"
 nova_compute_virt_type: "kvm"
 enable_haproxy: "no"
 ```
+
+** Please note that the neutron_external_interface is actually a USB nic that was used to provide a second interface on the working system.   The interfaces and addresses  must be changed to the appropriate working and active network interfaces for the deployment to be successful. **
+
 
 ## References
 
