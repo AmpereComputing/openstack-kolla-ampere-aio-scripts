@@ -91,7 +91,7 @@ Additionally `init-runonce` is executed during the script processes.  Modificati
 
 * [init-runonce](init-runonce)
 
-The important changes that were made to the script were the following.  Theses changes represent the Network information of the subnet of the active interface with a range of IP addresses that can be used for assigning `floating-ips` to the virtual machine instances.
+Theses changes represent the Network information of the subnet of the active interface with a range of IP addresses that can be used for assigning `floating-ips` to the virtual machine instances.  The changes used in the this example are the following:
 
 ```
 EXT_NET_CIDR='10.1.1.0/24'
