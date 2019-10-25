@@ -20,7 +20,7 @@ This repository contains assets to deploy an OpenStack all-in-one on Ampere eMAG
 
 The goal of the included scripts are to provide an easy way to replicate an OpenStack AIO deployment using Kolla and Kolla-ansible on AARCH64.  The follow is the basic pattern for deploying.
 
-1. Deploy a minimal operating system
+1. Deploy a minimal operating system with ssh access and git installed.
 1. Download this repository to the deployment target
 1. Run scripts from this repository in numerical order on the target host.
 
