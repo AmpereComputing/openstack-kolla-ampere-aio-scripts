@@ -11,6 +11,7 @@ Scripts and information for reproducing an OpenStack All-In-One deployment on Am
 This repository contains assets to deploy an OpenStack all-in-one on Ampere eMAG server. The server is installed with standard Debian version 10.1.0 arm64 and OpenStack 8.1.0 Stein. In this configuration, the administrator can create virtual instances using various preloaded aarch64 operating systems (Debian, Fedora, Fedora-Atomic, Ubuntu, K3OS) through the Horizion web interface.
 [OpenStack Kolla](https://opendev.org/openstack/kolla) is used to build containers from source. Kolla-ansible is used to install OpenStack as an All-In-One deployment scenerio.
 
+<script  id="asciicast-276985" src="https://asciinema.org/a/276985.js" async data-autoplay="true" data-size="small" data-speed="2"></script>
 
 ## Operating System Requirements
 
@@ -34,10 +35,6 @@ Kolla supports different operating system options for the Docker containers.  Du
 ###  Paste Logs from Ubuntu 18.04 Libvirt failures
   * [libvirtd.log](http://paste.openstack.org/show/781097/)
   * [nova-compute.log](http://paste.openstack.org/show/781098/)
-
-## Deploying Kolla Images Process
-
-<script  id="asciicast-276985" src="https://asciinema.org/a/276985.js" async data-autoplay="true" data-size="small" data-speed="2"></script>
 
 ## Script Assets
 
