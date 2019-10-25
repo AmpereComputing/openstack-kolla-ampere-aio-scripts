@@ -73,7 +73,7 @@ You will need to edit this file and change necessary information prior to the de
 
 * [etc/kolla/globals.yml](etc/kolla/globals.yml)
 
-The modifications that were made to the global.yml to produce a working AIO are as follows during this process were:
+The modifications that were made to the global.yml to produce a working AIO during this process were:
 
 ```
 kolla_base_distro: "debian"
@@ -87,7 +87,17 @@ enable_haproxy: "no"
 
 ** Please note that the neutron_external_interface is actually a USB nic that was used to provide a second interface on the working system.   The interfaces and addresses  must be changed to the appropriate working and active network interfaces for the deployment to be successful. **
 
+Additionally `init-runonce` is executed during the script processes.  Modifications will be necessary to ensure a proper functioning OpenStack deployment after installation.
 
+* [init-runonce](init-runonce)
+
+The important changes that were made to the script were the following.  Theses changes represent the Network information of the subnet of the active interface with a range of IP addresses that can be used for assigning `floating-ips` to the virtual machine instances.
+
+```
+EXT_NET_CIDR='10.1.1.0/24'
+EXT_NET_RANGE='start=10.1.1.210,end=10.1.1.240'
+EXT_NET_GATEWAY='10.1.1.1'
+```
 ## References
 
 The following information assets were acquired during the research process of this endeavour.
