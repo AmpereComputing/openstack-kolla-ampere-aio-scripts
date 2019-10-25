@@ -67,12 +67,13 @@ For those interested the following information was gathered during the troublesh
 
 ## Configuration 
 
-Configuration is done via the included globals.yml file. You will need to edit this file and change necessary information prior to the deploy process.
+Configuration is done via the included globals.yml file.
+The included Kolla globals.yml configuration file used to produce an OpenStack All-In-One.
+You will need to edit this file and change necessary information prior to the deploy process.
 
 * [etc/kolla/globals.yml](etc/kolla/globals.yml)
 
-The included Kolla globals.yml configuration file used to produce an OpenStack All-In-One.
-The modifications to the global.yml to produce a working AIO are as follows.  
+The modifications that were made to the global.yml to produce a working AIO are as follows during this process were:
 
 ```
 kolla_base_distro: "debian"
