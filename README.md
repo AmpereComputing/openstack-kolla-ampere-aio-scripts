@@ -47,6 +47,11 @@ The follow is the basic pattern for deploying using the supplied scripts.
   * Installs [Terraform](https://terraform.io) to use to automate interaction with the cloud resources available on the deployed OpenStack AIO
   * Downloads source for [terraform-openstack-images](https://github.com/amperecomputing/terraform-openstack-images)
   * Runs terraform to deploy a base set of AARCH64 QCOW2 images onto the OpenStack AIO
+* [008_packer.sh:](008_packer.sh)
+  * Downloads and installs [Packer](https://packer.io)
+* [009_k3OS_packer_image.sh:](009_k3OS_packer_image.sh)
+  * Downloads source with OpenStack packer template for [k3OS](https://github.com/ppouliot/k3os)
+  * Builds a k3OS image using packer.
 * [init-runonce:](init-runonce) Modified init-runonce with values that will work on network.
 
 
