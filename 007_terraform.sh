@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
+TERRAFORM_VERSION='0.12.18'
+
 source /etc/kolla/admin-openrc.sh
 apt-get install unzip -y
 cd /usr/local/bin
-wget -cv https://releases.hashicorp.com/terraform/0.12.10/terraform_0.12.10_linux_arm.zip
-unzip -u terraform_0.12.10_linux_arm.zip
-rm -rf terraform_0.12.10_linux_arm.zip
+wget -cv https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION/terraform_$TERRAFORM_VERSION_linux_arm.zip
+unzip -u terraform_$TERRAFORM_VERSION_linux_arm.zip
+rm -rf terraform_$TERRAFORM_VERSION_linux_arm.zip
 /usr/local/bin/terraform --version
 cd /opt
 git clone https://github.com/amperecomputing/terraform-openstack-images
