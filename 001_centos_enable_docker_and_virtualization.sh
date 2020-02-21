@@ -4,7 +4,7 @@ PROJECT_DIR=`pwd`
 LOGFILE=$PROJECT_DIR/centos_kolla.log
 exec >> $LOGFILE 2>&1
 
-TOOLS="screen rsync git curl"
+TOOLS="screen rsync git curl byobu"
 DOCKER="docker-ce docker-ce-cli containerd.io"
 PYTHON3="platform-python-devel python3-libselinux python3 python3-pip python3-setuptools python3-virtualenv"
 DEVEL="libffi-devel gcc openssl-devel"
