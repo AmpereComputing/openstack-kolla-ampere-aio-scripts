@@ -7,7 +7,7 @@ exec >> $LOGFILE 2>&1
 TOOLS="screen rsync git curl"
 DOCKER="docker-ce docker-ce-cli containerd.io"
 PYTHON3="python-devel libselinux-python platform-python-pip"
-DEVEL="libffi-deviel gcc openssl-devel"
+DEVEL="libffi-devel gcc openssl-devel"
 VIRT="qemu-kvm qemu-img libvirt virt-install libvirt-client iscsi-initiator-utils"
 
 # Add Docker package repositories
@@ -23,7 +23,7 @@ echo "Installing Pythong Development"
 dnf install -y $PYTHON3 $DEVEL
 
 echo "Installing and Testing Docker"
-dnf install -y $DOCKER
+dnf install -y --nobest $DOCKER
 docker info
 
 echo "Installing Virtualization"
