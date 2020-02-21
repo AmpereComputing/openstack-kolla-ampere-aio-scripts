@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 PROJECT_DIR=`pwd`
-LOGFILE=$PROJECT_DIR/centos_kolla.log
+LOGFILE=$PROJECT_DIR/001_centos_enable_docker_and_virtualization.log
 exec >> $LOGFILE 2>&1
 
 TOOLS="screen rsync git curl byobu"
