@@ -25,6 +25,10 @@ dnf install -y $PYTHON3 $DEVEL
 alternatives --set python /usr/bin/python3
 alternatives --set pip /usr/bin/pip3
 
+echo "Stop and disable firewalld"
+systemctl stop firewalld
+systemctl disable firewalld
+
 echo "Installing Enabling and Testing Docker"
 dnf install -y --nobest $DOCKER
 systemctl enable docker
