@@ -25,15 +25,24 @@ dnf install -y $PYTHON3 $DEVEL
 alternatives --set python /usr/bin/python3
 alternatives --set pip /usr/bin/pip3
 
-echo "Stop and disable firewalld"
-systemctl stop firewalld
-systemctl disable firewalld
-
 echo "Installing Enabling and Testing Docker"
 dnf install -y --nobest $DOCKER
 systemctl enable docker
 systemctl start docker
 docker info
+
+echo "Configure firewalld for docker0 bridge and internet connectivity using network manager cli"
+# Found this information for configuration of docker for centos 8
+# https://serverfault.com/questions/987686/no-network-connectivity-to-from-docker-ce-container-on-centos-8
+
+echo "Use nmcli to set docker0 to public zone"
+nmcli connection modify docker0 connection.zone public
+
+echo "Configure masquerading to allow for docker ingress and egress"
+firewall-cmd --zone=public --add-masquerade --permanent
+
+echo "Restart docker to activate masquerading"
+systemctl restart docker
 
 echo "Installing Virtualization"
 dnf install -y $VIRT
