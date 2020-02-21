@@ -38,8 +38,9 @@ echo "Configure firewalld for docker0 bridge and internet connectivity using net
 echo "Use nmcli to set docker0 to public zone"
 nmcli connection modify docker0 connection.zone public
 
-echo "Configure masquerading to allow for docker ingress and egress"
+echo "Configure masquerading to allow for docker ingress and egress and reloading firewalld"
 firewall-cmd --zone=public --add-masquerade --permanent
+firewall-cmd --reload
 
 echo "Restart docker to activate masquerading"
 systemctl restart docker
