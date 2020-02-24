@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-TERRAFORM_VERSION='0.12.18'
+PROJECT_DIR=`pwd`
+LOGFILE=$PROJECT_DIR/007_terraform.log
+exec >> $LOGFILE 2>&1
+
+TERRAFORM_VERSION='0.12.21'
 
 source /etc/kolla/admin-openrc.sh
 apt-get install unzip -y
