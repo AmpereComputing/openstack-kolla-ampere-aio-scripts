@@ -9,8 +9,21 @@ exec >> $LOGFILE 2>&1
 #systemctl stop libvirt-bin 
 #systemctl disable libvirt-bin
 
+# Stop Libvirtd
 systemctl stop libvirtd.service
 systemctl disable libvirtd.service
+
+# Stop Libvirt-guests
+systemctl stop libvirt-guests.service
+systemctl disable libvirt-guests.service
+
+# Stop virtlockd
+systemctl stop virtlockd.service
+systemctl disable virtlockd.service
+
+# Stop virtlockd-admin
+systemctl stop virtlockd-admin.service
+systemctl disable virtlockd-admin.service
 
 # Open-Iscsi
 systemctl stop open-iscsi.service
