@@ -30,11 +30,18 @@ The follow is the basic pattern for deploying using the supplied scripts.
 ### Script Assets
 
 * [001_enable_docker_and_virtualization.sh:](001_enable_docker_and_virtualization.sh)
-  * Installs prerequisite packages and configures docker and kvm virtualization
+  * Installs prerequisite packages and configures docker and kvm virtualization on Debian
+* [001_centos_enable_docker_and_virtualization.sh:](001_enable_docker_and_virtualization.sh)
+  * Installs prerequisite packages and configures docker and kvm virtualization on Centos
 * [002_install_kolla.sh:](002_install_kolla.sh)
-  * Installs Kolla and Kolla-ansible from source
+  * Installs Kolla and Kolla-ansible from source on Debian
+* [002_centos_install_kolla.sh:](002_install_kolla.sh)
+  * Installs Kolla and Kolla-ansible from source on Centos
 * [003_build_containers.sh:](003_build_containers.sh)
   * Uses `kolla-build` to build Debian containers from source on the deployment host.
+  * Process wrapped in `asciinema` for recording build console output.
+* [003_build_containers.sh:](003_centos_build_containers.sh)
+  * Uses `kolla-build` to build Centos containers from source on the deployment host.
   * Process wrapped in `asciinema` for recording build console output.
 * [004_kolla_pre_deploy.sh:](004_kolla_pre_deploy.sh)
   * Runs kolla-ansible generate-certificates, bootstrap-servers and prechecks before deploy

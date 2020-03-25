@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
 PROJECT_DIR=`pwd`
+LOGFILE=$PROJECT_DIR/006_post_deploy.log
+exec >> $LOGFILE 2>&1
+
+PROJECT_DIR=`pwd`
 
 # Run Kolla-ansible post-deploy to generate the openrc info
 kolla-ansible post-deploy
