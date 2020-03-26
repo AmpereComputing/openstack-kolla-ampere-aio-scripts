@@ -109,7 +109,7 @@ network_interface: "enp1s0"
 # configurations. It is recommended this interface not be configured with any IP
 # addresses for that reason.
 #neutron_external_interface: "eth1"
-neutron_external_interface: "enx00051bb122ed"
+neutron_external_interface: "enx00051ba2c3f0"
 
 # Valid options are [ openvswitch, linuxbridge, vmware_nsxv, vmware_nsxv3, vmware_dvs, opendaylight ]
 # if vmware_nsxv3 is selected, enable_openvswitch MUST be set to "no" (default is yes)
@@ -228,9 +228,8 @@ enable_haproxy: "no"
 #enable_ceph_nfs: "no"
 #enable_ceph_dashboard: "{{ enable_ceph | bool }}"
 #enable_chrony: "yes"
-# UNCOMMENT NEXT TWO LINES TO ENABLE CONDER W/ LVM
-# enable_cinder: "yes"
-# enable_cinder_backend_lvm: "yes"
+#enable_cinder: "yes"
+#enable_cinder_backend_lvm: "yes"
 enable_cinder: "no"
 #enable_cinder_backup: "yes"
 #enable_cinder_backend_hnas_nfs: "no"
