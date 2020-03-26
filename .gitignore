@@ -1,2 +1,3 @@
 bionic-server-cloudimg-arm64.img
+*.img
 *.log
