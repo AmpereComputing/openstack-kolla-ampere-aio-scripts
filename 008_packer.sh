@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 PROJECT_DIR=`pwd`
-#LOGFILE=$PROJECT_DIR/008_packer.log
-#exec >> $LOGFILE 2>&1
+LOGFILE=$PROJECT_DIR/008_packer.log
+exec >> $LOGFILE 2>&1
 
 source ${PROJECT_DIR}/ENVIRONMENT
 echo $PACKER_VERSION
