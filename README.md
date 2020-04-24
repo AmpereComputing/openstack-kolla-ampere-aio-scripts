@@ -59,6 +59,9 @@ The follow is the basic pattern for deploying using the supplied scripts.
 * [009_k3OS_packer_image.sh:](009_k3OS_packer_image.sh)
   * Downloads source with OpenStack packer template for [k3OS](https://github.com/ppouliot/k3os)
   * Builds a k3OS image using packer.
+* [010_ironic_deploy_image.sh](010_ironic_deploy_image.sh)
+  * Download and install ironic tooling from source
+  * Download flatcar pxe kernel and initrd for ARM63
 * [init-runonce:](init-runonce) Modified init-runonce with values that will work on network.
 
 
