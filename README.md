@@ -133,3 +133,10 @@ The following information assets were acquired during the research process of th
 * [Deploying OpenStack Kolla Ocata](https://jamesbenson.weebly.com/blog/deploying-openstack-kolla-ocata)
 * [Deploying OpenStack Part 2 - Post Deployment](https://jamesbenson.weebly.com/blog/deploying-openstack-part-2-post-deployment)
 * [Ansible and kolla a on Ubuntu](https://elatov.github.io/2018/01/openstack-ansible-and-kolla-on-ubuntu-1604/)
+
+### Ironic Images
+
+* [TinyIPA images](https://docs.openstack.org/ironic-python-agent-builder/latest/admin/tinyipa.html)
+* [Building or downloading a deploy ramdisk image](https://docs.openstack.org/ironic/pike/install/deploy-ramdisk.html#deploy-ramdisk)
+* [Ironic in Kolla](https://docs.openstack.org/kolla-ansible/rocky/reference/ironic-guide.html)
+* [Bare metal service Installation Guide](https://docs.openstack.org/ironic/queens/install/refarch/common.html)
