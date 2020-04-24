@@ -109,7 +109,7 @@ network_interface: "enp1s0f0"
 # configurations. It is recommended this interface not be configured with any IP
 # addresses for that reason.
 #neutron_external_interface: "eth1"
-neutron_external_interface: "enp1s0f1"
+neutron_external_interface: "enP2p1s0f0"
 
 # Valid options are [ openvswitch, linuxbridge, vmware_nsxv, vmware_nsxv3, vmware_dvs, opendaylight ]
 # if vmware_nsxv3 is selected, enable_openvswitch MUST be set to "no" (default is yes)

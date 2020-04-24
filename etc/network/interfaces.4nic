@@ -1,0 +1,35 @@
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+allow-hotplug enp1s0f0
+iface enp1s0f0 inet static
+  address 10.76.116.61/24
+  gateway 10.76.116.1
+  dns-nameservers 10.76.100.2,10.76.99.2
+  dns-search scc-lab.amperecomputing.com amperecomputing.com dev.scc-lab.amperecomputing.com
+
+allow-hotplug enp1s0f1
+iface enp1s0f1 inet manual
+#  address 192.68.116.61/24
+#  gateway 192.68.116.1
+#  dns-nameservers 10.76.100.2,10.76.99.2
+#  dns-search scc-lab.amperecomputing.com amperecomputing.com dev.scc-lab.amperecomputing.com
+#
+allow-hotplug enp1s0f1
+iface enp1s0f1 inet manual
+#  dns-search scc-lab.amperecomputing.com amperecomputing.com dev.scc-lab.amperecomputing.com
+#
+#
+## OpenStack External Interface
+allow-hotplug enP2p1s0f0 
+iface enP2p1s0f0 inet manual
+
+allow-hotplug enP2p1s0f1
+iface enP2p1s0f1 inet manual
