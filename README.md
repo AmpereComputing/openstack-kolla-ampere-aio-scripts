@@ -146,3 +146,10 @@ The following information assets were acquired during the research process of th
 * [Building or downloading a deploy ramdisk image](https://docs.openstack.org/ironic/pike/install/deploy-ramdisk.html#deploy-ramdisk)
 * [Ironic in Kolla](https://docs.openstack.org/kolla-ansible/rocky/reference/ironic-guide.html)
 * [Bare metal service Installation Guide](https://docs.openstack.org/ironic/queens/install/refarch/common.html)
+* [Configure Nova Baremetal Flavors](https://docs.openstack.org/ironic/train/install/configure-nova-flavors.html)
+* [diskimage-builder/ironic-python-agent-builder](https://docs.openstack.org/ironic-python-agent-builder/latest/admin/dib.html)
+* [Troubleshooting ironic-python-agent](https://docs.openstack.org/ironic-python-agent/latest/admin/troubleshooting.html#ironic-python-agent-builder)
+* [Kolla-ansible Ironic Guide](https://docs.openstack.org/kolla-ansible/train/reference/bare-metal/ironic-guide.html)
+* [Ironic Configure Pxe](https://docs.openstack.org/ironic/latest/install/configure-pxe.html)
+
+
