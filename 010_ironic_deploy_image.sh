@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
 IRONIC_CONFIG=/etc/kolla/config/ironic
-ELEMENTS_PATH=/usr/local/share/ironic-python-agent-builder/dib
+#ELEMENTS_PATH=/usr/local/share/ironic-python-agent-builder/dib
 PROJECT_DIR=`pwd`
 LOGFILE=$PROJECT_DIR/010_ironic_deploy_image.log
 exec >> $LOGFILE 2>&1
 
 # ensure tooling is present
-apt-get update -y && apt-get install qemu-utils kpartx squashfs-tools genisoimage debootstrap qemu-block-extra uuid-runtime -y 
+apt-get update -y && apt-get install qemu-utils kpartx hdparm  util-linux squashfs-tools genisoimage debootstrap qemu-block-extra uuid-runtime -y 
 
 # Change to /opt and download ironic tooling form src
 cd /opt
@@ -31,4 +31,5 @@ mkdir -p ${IRONIC_CONFIG}
 cd ${IRONIC_CONFIG}
 
 # export ELEMENTS_PATH=/usr/local/share/ironic-python-agent-builder/dib
-disk-image-create ironic-agent debian -a arm64 -o ironic-deploy
+ironic-python-agent-builder debian
+
