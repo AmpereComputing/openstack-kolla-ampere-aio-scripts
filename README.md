@@ -59,9 +59,12 @@ The follow is the basic pattern for deploying using the supplied scripts.
 * [009_k3OS_packer_image.sh:](009_k3OS_packer_image.sh)
   * Downloads source with OpenStack packer template for [k3OS](https://github.com/ppouliot/k3os)
   * Builds a k3OS image using packer.
-* [010_ironic_deploy_image.sh](010_ironic_deploy_image.sh)
+* [010_ironic_deploy_image_tools.sh](010_ironic_deploy_image_tools.sh)
   * Download and install ironic tooling from source
-  * Download flatcar pxe kernel and initrd for ARM63
+* [011_ironic_deploy_image_create.sh](011_ironic_deploy_image_create.sh)
+  * Run ironic-python-agent-builder to create ironic deploy kernel and initrd
+* [012_ironic_publish_deploy_image_create_baremetal_flavor.sh](012_ironic_publish_deploy_image_create_baremetal_flavor.sh)
+  * Run ironic-python-agent-builder to create ironic deploy kernel and initrd
 * [init-runonce:](init-runonce) Modified init-runonce with values that will work on network.
 
 
