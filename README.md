@@ -154,4 +154,5 @@ The following information assets were acquired during the research process of th
 * [Ironic Configure Pxe](https://docs.openstack.org/ironic/latest/install/configure-pxe.html)
 * [Ironic Configure Glance Images](https://docs.openstack.org/ironic/train/install/configure-glance-images.html)
 * [Ironic configure IPMI](https://docs.openstack.org/ironic/train/install/configure-ipmi.html)
+* [Ironic Node Enrollment](https://docs.openstack.org/ironic/train/install/enrollment.html)
 
