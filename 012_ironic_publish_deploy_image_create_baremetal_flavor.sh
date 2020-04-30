@@ -20,4 +20,6 @@ exec >> $LOGFILE 2>&1
 source /etc/kolla/admin-openrc.sh
 openstack image create --disk-format aki --container-format aki --public --file ${IRONIC_CONFIG}/ironic-python-agent.kernel ${IRONIC_DEPLOY_KERNEL}
 openstack image create --disk-format ari --container-format ari --public --file ${IRONIC_CONFIG}/ironic-python-agent.initramfs ${IRONIC_DEPLOY_INITRD}
-openstack flavor create --ram ${RAM_MB} --disk ${DISK_GB} --vcpus ${CPU} ${IRONIC_FLAVOR_NAME} --property resources:VCPU=0 --property resources:MEMORY_MB=0 --property resources:DISK_GB=0
+openstack flavor create --ram ${RAM_MB} --disk ${DISK_GB} --vcpus ${CPU} ${IRONIC_FLAVOR_NAME} \
+	--property resources:CUSTOM_BAREMETAL_RESOURCE_CLASS=1 \
+	--property resources:VCPU=0 --property resources:MEMORY_MB=0 --property resources:DISK_GB=0

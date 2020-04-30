@@ -17,8 +17,8 @@ iface enp1s0f0 inet static
 
 # Ironic Network Interface
 allow-hotplug enp1s0f1
-iface enp1s0f1 inet manual
-#  address 192.68.116.61/24
+iface enp1s0f1 inet static
+  address 192.68.116.61/24
 #  gateway 192.68.116.1
 #  dns-nameservers 10.76.100.2,10.76.99.2
 #  dns-search scc-lab.amperecomputing.com amperecomputing.com dev.scc-lab.amperecomputing.com

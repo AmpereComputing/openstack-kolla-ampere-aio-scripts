@@ -29,23 +29,25 @@ openstack baremetal driver list
 openstack flavor show ${IRONIC_FLAVOR_NAME} -f value -c properties
 openstack baremetal node create \
 	--driver ipmi \
-	--name falcon-01 \
+	--name baremetal-falcon-01 \
 	--driver-info ipmi_username=${IPMI_USERNAME} \
 	--driver-info ipmi_password=${IPMI_PASSWD} \
 	--driver-info ipmi_address=${IPMI_ADDRESS} \
 	--resource-class baremetal-resource-class \
+	--property cpus=1 \
+	--property memory_mb=512 \
+	--property local_gb=1 \
 	--driver-info deploy_kernel=${IRONIC_DEPLOY_KERNEL} \
 	--driver-info deploy_ramdisk=${IRONIC_DEPLOY_INITRD}
-#	--property cpus=1 \
-#	--property memory_mb=512 \
 #	--property cpu_arch=arm64 \
-#	--property local_gb=1 \
 #	--deploy-interface direct \
 #	--raid-interface agent \
 
 NODE_UUID=`openstack baremetal node list | awk '{print $2}' | tr '\012' ' ' | awk '{print $2}'`
 echo "NODE UUID = "$NODE_UUID
 openstack baremetal node show ${NODE_UUID}
+
+echo "create baremetal port"
 openstack baremetal port create ${PXE_INTERFACE_MAC} --node ${NODE_UUID}
 openstack baremetal node validate ${NODE_UUID}
 echo "Node Manage & Inspect"
@@ -55,3 +57,7 @@ openstack baremetal node show ${NODE_UUID}
 echo "Node Provide"
 openstack baremetal node provide ${NODE_UUID}
 openstack baremetal node show ${NODE_UUID}
+
+# Show Hypervisor Stats
+openstack hypervisor stats show
+openstack hypervisor show ${NODE_UUID}

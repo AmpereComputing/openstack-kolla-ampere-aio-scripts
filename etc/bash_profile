@@ -1,0 +1,68 @@
+SSH_ENV="$HOME/.ssh/environment"
+
+function start_agent {
+    echo "Initialising new SSH agent..."
+    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+    echo succeeded
+    chmod 600 "${SSH_ENV}"
+    . "${SSH_ENV}" > /dev/null
+    /usr/bin/ssh-add;
+}
+
+# Source SSH settings, if applicable
+
+if [ -f "${SSH_ENV}" ]; then
+    . "${SSH_ENV}" > /dev/null
+    #ps ${SSH_AGENT_PID} doesn't work under cywgin
+    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+    start_agent;
+    }
+else
+    start_agent;
+fi
+
+echo "************************************************"
+echo "*!* Sourcing OpenStack Environment Variables *!*"
+echo "************************************************"
+
+# kolla ansible generated credentials
+source /etc/kolla/admin-openrc.sh
+
+# k30s OpenStack Packer template variables
+OS_SOURCE_IMAGE=`openstack image list | grep 'ubuntu-18.04'| awk '{print $2}'`
+OS_NETWORKS_ID=`openstack network list | grep 'demo-net'| awk '{print $2}'`
+OS_FLOATING_IP_POOL='public1'
+
+echo "***************************************"
+echo "*!* OpenStack Environment Variables *!*" 
+echo "***************************************"
+echo "OS_PROJECT_DOMAIN_NAME: " $OS_PROJECT_DOMAIN_NAME 
+echo "OS_USER_DOMAIN_NAME: " $OS_USER_DOMAIN_NAME
+echo "OS_PROJECT_NAME: " $OS_PROJECT_NAME
+echo "OS_TENANT_NAME: " $OS_TENANT_NAME
+echo "OS_USERNAME: " $OS_USERNAME
+echo "OS_PASSWORD: " $OS_PASSWORD
+echo "OS_AUTH_URL: " $OS_AUTH_URL
+echo "OS_INTERFACE: " $OS_INTERFACE
+echo "OS_ENDPOINT_TYPE: " $OS_ENDPOINT_TYPE
+echo "OS_IDENTITY_API_VERSION: " $OS_IDENTITY_API_VERSION
+echo "OS_REGION_NAME: " $OS_REGION_NAME
+echo "OS_AUTH_PLUGIN: " $OS_AUTH_PLUGIN
+echo
+echo "***************************************************************"
+echo "*!* Generating OpenStack Variables for k3OS Packer template *!*"
+echo "***************************************************************"
+echo
+echo "* Ubuntu 18.04 Source image"
+echo "* ========================="
+echo "OS_SOURCE_IMAGE: " $OS_SOURCE_IMAGE
+echo
+echo "* Provisioning Network & Floating IP Pool"
+echo "* ======================================="
+echo "OS_NETWORKS_ID: " $OS_NETWORKS_ID
+echo "OS_FLOATING_IP_POOL: " $OS_FLOATING_IP_POOL
+echo
+echo "********************************************"
+echo "*!* Variables required by Ironic scripts *!*"
+echo "********************************************"
+echo

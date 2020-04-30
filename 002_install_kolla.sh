@@ -32,7 +32,6 @@ systemctl dsiable open-iscsi.service
 systemctl stop iscsid.service
 systemctl disable iscsid.service
 
-
 # Disable Apparmor libvirt profile
 apparmor_parser -R /etc/apparmor.d/usr.sbin.libvirtd
 
