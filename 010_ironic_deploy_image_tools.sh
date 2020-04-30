@@ -7,7 +7,7 @@ LOGFILE=$PROJECT_DIR/010_ironic_deploy_image_tools.log
 exec >> $LOGFILE 2>&1
 
 # ensure tooling is present
-apt-get update -y && apt-get install ipmitool qemu-utils kpartx hdparm  util-linux squashfs-tools genisoimage debootstrap qemu-block-extra uuid-runtime -y 
+apt-get update -y && apt-get install ipmitool qemu-utils kpartx hdparm  util-linux squashfs-tools genisoimage debootstrap qemu-block-extra uuid-runtime shellinabox socat -y 
 
 # Change to /opt and download ironic tooling form src
 cd /opt
