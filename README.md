@@ -65,6 +65,7 @@ The follow is the basic pattern for deploying using the supplied scripts.
   * Run ironic-python-agent-builder to create ironic deploy kernel and initrd
 * [012_ironic_publish_deploy_image_create_baremetal_flavor.sh](012_ironic_publish_deploy_image_create_baremetal_flavor.sh)
   * Run ironic-python-agent-builder to create ironic deploy kernel and initrd
+* [013_ironic_register_node.sh]()
 * [init-runonce:](init-runonce) Modified init-runonce with values that will work on network.
 
 
@@ -140,9 +141,18 @@ The following information assets were acquired during the research process of th
 * [Deploying OpenStack Part 2 - Post Deployment](https://jamesbenson.weebly.com/blog/deploying-openstack-part-2-post-deployment)
 * [Ansible and kolla a on Ubuntu](https://elatov.github.io/2018/01/openstack-ansible-and-kolla-on-ubuntu-1604/)
 
-### Ironic Images
+### Ironic
 
 * [TinyIPA images](https://docs.openstack.org/ironic-python-agent-builder/latest/admin/tinyipa.html)
 * [Building or downloading a deploy ramdisk image](https://docs.openstack.org/ironic/pike/install/deploy-ramdisk.html#deploy-ramdisk)
 * [Ironic in Kolla](https://docs.openstack.org/kolla-ansible/rocky/reference/ironic-guide.html)
 * [Bare metal service Installation Guide](https://docs.openstack.org/ironic/queens/install/refarch/common.html)
+* [Configure Nova Baremetal Flavors](https://docs.openstack.org/ironic/train/install/configure-nova-flavors.html)
+* [diskimage-builder/ironic-python-agent-builder](https://docs.openstack.org/ironic-python-agent-builder/latest/admin/dib.html)
+* [Troubleshooting ironic-python-agent](https://docs.openstack.org/ironic-python-agent/latest/admin/troubleshooting.html#ironic-python-agent-builder)
+* [Kolla-ansible Ironic Guide](https://docs.openstack.org/kolla-ansible/train/reference/bare-metal/ironic-guide.html)
+* [Ironic Configure Pxe](https://docs.openstack.org/ironic/latest/install/configure-pxe.html)
+* [Ironic Configure Glance Images](https://docs.openstack.org/ironic/train/install/configure-glance-images.html)
+* [Ironic configure IPMI](https://docs.openstack.org/ironic/train/install/configure-ipmi.html)
+* [Ironic Node Enrollment](https://docs.openstack.org/ironic/train/install/enrollment.html)
+
