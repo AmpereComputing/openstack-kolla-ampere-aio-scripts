@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 PROJECT_DIR=`pwd`
-LOGFILE=${PROJECT_DIR}/009_k3os_packer_image.log
-exec >> $LOGFILE 2>&1
+#LOGFILE=${PROJECT_DIR}/009_k3OS_packer_image.log
+#exec >> $LOGFILE 2>&1
 
 source /etc/kolla/admin-openrc.sh
 export OS_SOURCE_IMAGE=`openstack image list | grep 'ubuntu-18.04'| awk '{print $2}'`

@@ -6,7 +6,7 @@ ARCH=arm64
 ELEMENTS_PATH=/usr/local/share/ironic-python-agent-builder/dib
 IRONIC_CONFIG=/etc/kolla/config/ironic
 PROJECT_DIR=`pwd`
-LOGFILE=$PROJECT_DIR/010_ironic_deploy_image_create.log
+LOGFILE=$PROJECT_DIR/011_ironic_deploy_image_create.log
 exec >> $LOGFILE 2>&1
 
 cd ${IRONIC_CONFIG}

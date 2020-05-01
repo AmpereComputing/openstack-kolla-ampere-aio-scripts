@@ -7,7 +7,7 @@ source /etc/network/interfaces.d/*
 auto lo
 iface lo inet loopback
 
-# The primary network interface
+# kolla network interface and api interface
 allow-hotplug enp1s0f0
 iface enp1s0f0 inet static
   address 10.76.116.61/24
@@ -15,19 +15,21 @@ iface enp1s0f0 inet static
   dns-nameservers 10.76.100.2,10.76.99.2
   dns-search scc-lab.amperecomputing.com amperecomputing.com dev.scc-lab.amperecomputing.com
 
-# Ironic Network Interface
+## Kolla "Network" Interface used for Neutron Internal Networking w/ VXLAN
+## This is plugged into dedicated dataplane
+## Tunnel Interface
 allow-hotplug enp1s0f1
 iface enp1s0f1 inet static
-  address 192.68.116.61/24
+   address 192.168.116.61/24
 #  gateway 192.68.116.1
 #  dns-nameservers 10.76.100.2,10.76.99.2
 #  dns-search scc-lab.amperecomputing.com amperecomputing.com dev.scc-lab.amperecomputing.com
 #
 
-## OpenStack External Interface
+# Neutron External
 allow-hotplug enP2p1s0f0 
 iface enP2p1s0f0 inet manual
 
 # Unused
-allow-hotplug enP2p1s0f1
-iface enP2p1s0f1 inet manual
+#allow-hotplug enP2p1s0f1
+#iface enP2p1s0f1 inet manual

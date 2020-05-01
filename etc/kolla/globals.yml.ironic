@@ -32,7 +32,11 @@ node_custom_config: "/etc/kolla/config"
 # in "OpenStack options" section, and set this value to the IP of your
 # 'network_interface' as set in the Networking section below.
 #kolla_internal_vip_address: "10.10.10.254"
+# enp1s0f0
 kolla_internal_vip_address: "10.76.116.61"
+# enp1s0f1 - dataplane
+#kolla_internal_vip_address: "192.168.116.61"
+
 
 # This is the DNS name that maps to the kolla_internal_vip_address VIP. By
 # default it is the same as kolla_internal_vip_address.
@@ -44,6 +48,9 @@ kolla_internal_vip_address: "10.76.116.61"
 # share the same address.  Specify a kolla_external_vip_address to separate
 # internal and external requests between two VIPs.
 #kolla_external_vip_address: "{{ kolla_internal_vip_address }}"
+#
+#kolla_external_vip_address: "10.76.116.61"
+#kolla_external_vip_interface: "enp1s0f0"
 
 # The Public address used to communicate with OpenStack as set in the public_url
 # for the endpoints that will be created. This DNS name should map to
@@ -92,7 +99,11 @@ kolla_internal_vip_address: "10.76.116.61"
 #network_interface: "eth0"
 #network_interface: "enp1s0f0"
 api_interface: "enp1s0f0"
+# Dataplane
 network_interface: "enp1s0f1"
+#api_interface: "enp1s0f1"
+#tunnel_interface: "enp1s0f1"
+
 
 # These can be adjusted for even more customization. The default is the same as
 # the 'network_interface'. These interfaces must contain an IPv4 address.
@@ -112,7 +123,7 @@ network_interface: "enp1s0f1"
 # addresses for that reason.
 #neutron_external_interface: "eth1"
 neutron_external_interface: "enP2p1s0f0"
-
+#
 # Valid options are [ openvswitch, linuxbridge, vmware_nsxv, vmware_nsxv3, vmware_dvs, opendaylight ]
 # if vmware_nsxv3 is selected, enable_openvswitch MUST be set to "no" (default is yes)
 #neutron_plugin_agent: "openvswitch"
@@ -311,16 +322,19 @@ enable_ironic_pxe_uefi: "yes"
 #enable_neutron_vpnaas: "no"
 #enable_neutron_sriov: "no"
 #enable_neutron_dvr: "no"
+#enable_neutron_dvr: "yes"
 #enable_neutron_fwaas: "no"
 #enable_neutron_qos: "no"
 #enable_neutron_agent_ha: "no"
 #enable_neutron_bgp_dragent: "no"
 #enable_neutron_provider_networks: "no"
+#enable_neutron_provider_networks: "yes"
 #enable_neutron_segments: "no"
 #enable_neutron_sfc: "no"
 #enable_neutron_metering: "no"
 #enable_neutron_infoblox_ipam_agent: "no"
 #enable_neutron_port_forwarding: "no"
+#enable_neutron_port_forwarding: "yes"
 #enable_nova_serialconsole_proxy: "no"
 #enable_nova_ssh: "yes"
 #enable_octavia: "no"
@@ -529,7 +543,7 @@ nova_compute_virt_type: "kvm"
 #############################
 # dnsmasq bind interface for Ironic Inspector, by default is network_interface
 #ironic_dnsmasq_interface: "{{ network_interface }}"
-ironic_dnsmasq_interface: "enp1s0f1"
+#ironic_dnsmasq_interface: "enp1s0f1"
 # The following value must be set when enabling ironic,
 # the value format is "192.168.0.10,192.168.0.100".
 #ironic_dnsmasq_dhcp_range:

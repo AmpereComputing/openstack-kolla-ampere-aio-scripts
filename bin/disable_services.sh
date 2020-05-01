@@ -20,3 +20,8 @@ systemctl disable virtlockd.service
 # Stop virtlockd-admin
 systemctl stop virtlockd-admin.service
 systemctl disable virtlockd-admin.service
+# Stop Iscsi
+systemctl stop open-iscsi.service
+systemctl stop iscsid.service
+systemctl disable open-iscsi.service
+systemctl disable iscsid.service
