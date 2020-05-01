@@ -157,3 +157,8 @@ The following information assets were acquired during the research process of th
 * [Ironic Node Enrollment](https://docs.openstack.org/ironic/train/install/enrollment.html)
 * [Ironic Troubleshooting (SuSE)](https://documentation.suse.com/external-tree/en-us/soc/9/openstack/user/html/ironic/admin/troubleshooting.html)
 
+### Kolla-Ansible Neutron/Networking
+
+* [Advanced Configuration](https://docs.openstack.org/kolla-ansible/latest/admin/advanced-configuration.html)
+* [Production Arch Guide](https://docs.openstack.org/kolla-ansible/4.0.1/production-architecture-guide.html)
+* [Troubleshooting Interfaces](https://ask.openstack.org/en/question/113795/kolla-ansible-config-adds-l3-agent-qg-interface-in-br-int-no-inet-access-for-vms/)
