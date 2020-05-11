@@ -156,6 +156,7 @@ The following information assets were acquired during the research process of th
 * [Ironic configure IPMI](https://docs.openstack.org/ironic/train/install/configure-ipmi.html)
 * [Ironic Node Enrollment](https://docs.openstack.org/ironic/train/install/enrollment.html)
 * [Ironic Troubleshooting (SuSE)](https://documentation.suse.com/external-tree/en-us/soc/9/openstack/user/html/ironic/admin/troubleshooting.html)
+* [Kolla Ansible Ironic Bug](https://bugs.launchpad.net/kolla-ansible/+bug/1742972)
 
 ### Kolla-Ansible Neutron/Networking
 
