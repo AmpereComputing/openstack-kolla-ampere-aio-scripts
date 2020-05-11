@@ -37,8 +37,6 @@ openstack baremetal node create \
 	--property cpus=1 \
 	--property memory_mb=512 \
 	--property local_gb=1 \
-	--property cpu_arch=arm64 \
-	--property capabilities='boot_mode:uefi' \
 	--driver-info deploy_kernel=${IRONIC_DEPLOY_KERNEL} \
 	--driver-info deploy_ramdisk=${IRONIC_DEPLOY_INITRD}
 #	--property cpu_arch=arm64 \

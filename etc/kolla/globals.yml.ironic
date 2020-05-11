@@ -563,6 +563,10 @@ ironic_dnsmasq_boot_file: "debian-installer/arm64/bootnetaa64.efi"
 
 # List of extra kernel parameters passed to the kernel used during inspection
 #ironic_inspector_kernel_cmdline_extras: []
+#
+ironic_pxe_extra_volumes:
+  - "/usr/lib/debian-installer/images/10/arm64/text/debian-installer:/tftpboot/debian-installer"
+#  - "/usr/lib/debian-installer/images/10/arm64/text/debian-installer/arm64/bootnetaa64.efi:/tftpboot/debian-installer/arm64/bootnetaa64.efi"
 
 ######################################
 # Manila - Shared File Systems Options
