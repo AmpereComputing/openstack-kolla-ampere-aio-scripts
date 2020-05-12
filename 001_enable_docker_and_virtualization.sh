@@ -6,7 +6,7 @@ exec >> $LOGFILE 2>&1
 # Update package cache and upgrade packages
 apt-get update -y && apt-get upgrade -y
 
-TOOLS="aptitude screen rsync git curl byobu asciinema" 
+TOOLS="aptitude screen rsync git curl byobu asciinema tcpdump" 
 DOCKER="docker.io" 
 PYTHON2="python-dev python-pip python-selinux python-setuptools python-virtualenv"
 PYTHON3="python3-dev python3-pip python3-selinux python3-setuptools python3-virtualenv"

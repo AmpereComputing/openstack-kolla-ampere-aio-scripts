@@ -543,16 +543,18 @@ nova_compute_virt_type: "kvm"
 #############################
 # dnsmasq bind interface for Ironic Inspector, by default is network_interface
 #ironic_dnsmasq_interface: "{{ network_interface }}"
-#ironic_dnsmasq_interface: "enp1s0f1"
+ironic_dnsmasq_interface: "enp1s0f1"
 # The following value must be set when enabling ironic,
 # the value format is "192.168.0.10,192.168.0.100".
 #ironic_dnsmasq_dhcp_range:
 ironic_dnsmasq_dhcp_range: "192.168.116.100,192.168.116.150"
-#ronic_dnsmasq_default_gateway: "192.168.116.1"
+#ironic_dnsmasq_default_gateway: "192.168.116.1"
 ironic_cleaning_network: "public1"
 # PXE bootloader file for Ironic Inspector, relative to /tftpboot.
 #ironic_dnsmasq_boot_file: "pxelinux.0"
-ironic_dnsmasq_boot_file: "debian-installer/arm64/bootnetaa64.efi"
+#
+#ironic_dnsmasq_boot_file: "debian-installer/arm64/bootnetaa64.efi"
+#ironic_dnsmasq_boot_file: "bootnetaa64.efi"
 
 # Configure ironic upgrade option, due to currently kolla support
 # two upgrade ways for ironic: legacy_upgrade and rolling_upgrade
@@ -564,9 +566,11 @@ ironic_dnsmasq_boot_file: "debian-installer/arm64/bootnetaa64.efi"
 # List of extra kernel parameters passed to the kernel used during inspection
 #ironic_inspector_kernel_cmdline_extras: []
 #
-ironic_pxe_extra_volumes:
-  - "/usr/lib/debian-installer/images/10/arm64/text/debian-installer:/tftpboot/debian-installer"
-#  - "/usr/lib/debian-installer/images/10/arm64/text/debian-installer/arm64/bootnetaa64.efi:/tftpboot/debian-installer/arm64/bootnetaa64.efi"
+# Mapping in the debian installer kernel
+#ironic_dnsmasq_boot_file: "debian-installer/arm64/bootnetaa64.efi"
+#ironic_pxe_extra_volumes:
+#  - "/usr/lib/debian-installer/images/10/arm64/text/debian-installer/arm64/bootnetaa64.efi:/tftpboot/bootnetaa64.efi"
+#  - "/usr/lib/debian-installer/images/10/arm64/text/debian-installer:/tftpboot/debian-installer"
 
 ######################################
 # Manila - Shared File Systems Options
