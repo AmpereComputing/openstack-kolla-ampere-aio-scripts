@@ -163,3 +163,4 @@ The following information assets were acquired during the research process of th
 * [Advanced Configuration](https://docs.openstack.org/kolla-ansible/latest/admin/advanced-configuration.html)
 * [Production Arch Guide](https://docs.openstack.org/kolla-ansible/4.0.1/production-architecture-guide.html)
 * [Troubleshooting Interfaces](https://ask.openstack.org/en/question/113795/kolla-ansible-config-adds-l3-agent-qg-interface-in-br-int-no-inet-access-for-vms/)
+* [Documentation: Allow operators to provision multiple physical networks](https://bugs.launchpad.net/kolla/+bug/1626259)
