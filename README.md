@@ -158,6 +158,10 @@ The following information assets were acquired during the research process of th
 * [Ironic Troubleshooting (SuSE)](https://documentation.suse.com/external-tree/en-us/soc/9/openstack/user/html/ironic/admin/troubleshooting.html)
 * [Kolla Ansible Ironic Bug](https://bugs.launchpad.net/kolla-ansible/+bug/1742972)
 
+### Horizon
+
+* [Configure Horizion](https://blog.csuttles.io/post/building-openstack-containers-with-kolla/)
+
 ### Kolla-Ansible Neutron/Networking
 
 * [Advanced Configuration](https://docs.openstack.org/kolla-ansible/latest/admin/advanced-configuration.html)
