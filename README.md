@@ -161,6 +161,7 @@ The following information assets were acquired during the research process of th
 ### Horizon
 
 * [Configure Horizion](https://blog.csuttles.io/post/building-openstack-containers-with-kolla/)
+* [Horizon dashboard can not be accessed via kolla_external_vip_address or kolla_external_vip_address.](https://bugs.launchpad.net/kolla/+bug/1747240)
 
 ### Kolla-Ansible Neutron/Networking
 
