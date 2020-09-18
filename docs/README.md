@@ -29,7 +29,7 @@ The follow is the basic pattern for deploying using the supplied scripts.
 1. Make changes to [etc/kolla/globals.yml](etc/kolla/globals.yml) and [init-runonce](init-runonce) for your deployment needs.
 1. Run scripts from this repository in numerical order on the target host.
 
-## Prepare for Kolla
+### Prepare operating system for Kolla
 
 Install prerequisite packages and configure docker and kvm virtualization on Debian
 
@@ -75,10 +75,103 @@ sed -i 's/^127.0.1.1/#127.0.1.1/' /etc/hosts
 ```
 
 
-* [001_centos_enable_docker_and_virtualization.sh:](001_enable_docker_and_virtualization.sh)
-  * Installs prerequisite packages and configures docker and kvm virtualization on Centos
-* [002_install_kolla.sh:](002_install_kolla.sh)
-  * Installs Kolla and Kolla-ansible from source on Debian
+### Install Kolla and Kolla-ansible from source on Debian
+
+
+Configure libvirt services for kolla
+
+Stop Libvirtd
+
+```
+systemctl stop libvirtd.service
+systemctl disable libvirtd.service
+```
+
+Stop Libvirt-guests
+
+```
+systemctl stop libvirt-guests.service
+systemctl disable libvirt-guests.service
+```
+
+Stop virtlockd
+
+```
+systemctl stop virtlockd.service
+systemctl disable virtlockd.service
+```
+
+Stop virtlockd-admin
+
+```
+systemctl stop virtlockd-admin.service
+systemctl disable virtlockd-admin.service
+```
+
+
+Stop all Open-Iscsi services
+
+```
+systemctl stop open-iscsi.service
+systemctl dsiable open-iscsi.service
+systemctl stop iscsid.service
+systemctl disable iscsid.service
+```
+
+Disable Apparmor libvirt profile
+
+```
+apparmor_parser -R /etc/apparmor.d/usr.sbin.libvirtd
+
+```
+
+Change to /opt and get sources
+
+```
+cd /opt
+git clone https://opendev.org/openstack/kolla
+git clone https://opendev.org/openstack/kolla-ansible
+```
+
+Install Kolla and Kolla-ansible
+
+```
+pip install -U ansible
+pip install ./kolla/
+pip install ./kolla-ansible/
+```
+
+Prep the Kolla configuration directory
+
+```
+mkdir -p /etc/kolla/config
+```
+
+Copy the base templates
+
+```
+cp -R kolla-ansible/etc/kolla/* /etc/kolla
+
+```
+
+Copy the kolla-build.conf to /etc/kolla
+
+```
+cp /usr/local/share/kolla/etc_examples/oslo-config-generator/kolla-build.conf /etc/kolla/
+```
+
+# Get the Working Globals.yml
+# wget https://raw.githubusercontent.com/AmpereComputing/openstack-kolla-aio-scripts/master/etc/kolla/globals.yml -O /etc/kolla/globals.yml
+cd $PROJECT_DIR
+cp etc/kolla/globals.yml /etc/kolla/globals.yml
+
+# Create /etc/kolla/config/global.conf
+
+
+
+
+
+
 * [002_centos_install_kolla.sh:](002_install_kolla.sh)
   * Installs Kolla and Kolla-ansible from source on Centos
 * [003_build_containers.sh:](003_build_containers.sh)
