@@ -169,14 +169,7 @@ cp etc/kolla/globals.yml /etc/kolla/globals.yml
 
 
 
-
-
-
-* [003_build_containers.sh:](003_build_containers.sh)
-  * Uses `kolla-build` to build Debian containers from source on the deployment host.
-  * Process wrapped in `asciinema` for recording build console output.
-
-Building Kolla Images
+### Building Kolla Container Images
 
 Container images can be rebuilt at any time through the use of the `kolla-build` command.
 Kolla supports different operating system options for the Docker containers.
@@ -184,20 +177,67 @@ During the process of building this both Ubuntu and Debian were attempted.
 Currently Debian was fully funcitonal where at the time this was created Ubuntu 18.04 was unable to sucessfully deploy a virtual machine with Libvirt running containerized.
 The Debian functionality including AARCH64 support was contributed by Linaro, whom currently still actively contributes to the maintaince of the AARCH64 integration.
 
+```
+kolla-build -b debian -t source
+```
+
+### Kolla-Ansible Configuration 
+
+Configuration is done via the included globals.yml file.
+The included Kolla globals.yml configuration file used to produce an OpenStack All-In-One.
+You will need to edit this file and change necessary information prior to the deploy process.
+
+* [etc/kolla/globals.yml](etc/kolla/globals.yml)
+
+The modifications that were made to the global.yml to produce a working AIO during this process were:
+
+```
+kolla_base_distro: "debian"
+openstack_release: "8.1.0"
+kolla_internal_vip_address: "10.1.1.88"
+network_interface: "enp1s0"
+neutron_external_interface: "enx00051bb122ed"
+nova_compute_virt_type: "kvm"
+enable_haproxy: "no"
+```
 
 
-* [003_build_containers.sh:](003_centos_build_containers.sh)
-  * Uses `kolla-build` to build Centos containers from source on the deployment host.
-  * Process wrapped in `asciinema` for recording build console output.
+## Running Kolla-ansible
 
-### Running Kolla-ansible
+### Kolla-Ansible Pre Deployment
 
-* [004_kolla_pre_deploy.sh:](004_kolla_pre_deploy.sh)
-  * Runs kolla-ansible generate-certificates, bootstrap-servers and prechecks before deploy
-* [005_kolla_deploy.sh:](005_kolla_deploy.sh)
-  * Runs kolla-ansible deploy wrapped in Acsiinema for recording deploy console output.
+Generate passwords for use with kolla-ansible
+
+```
+kolla-genpwd
+```
+
+Generate certificates for the deployment.
+
+```
+kolla-ansible -i /usr/local/share/kolla-ansible/ansible/inventory/all-in-one certificates
+```
+
+Bootstrap servers with kolla-ansible requirements
+
+```
+kolla-ansible -i /usr/local/share/kolla-ansible/ansible/inventory/all-in-one bootstrap-servers
+```
+
+Run prechecks to validate everything prior to running kolla-ansible deploy.
+
+```
+kolla-ansible -i /usr/local/share/kolla-ansible/ansible/inventory/all-in-one prechecks
+```
+
+Deploy OpenStack.
+
+```
+kolla-ansible -i /usr/local/share/kolla-ansible/ansible/inventory/all-in-one deploy
+```
 
 ### Configuring OpenStack
+Once the openstack services are deployed you will need to do some basic configuration to make the cloud usable.    You will need to configure information specific to your network deployment in order to pre populate project, network, subnet, image, keys for the admin tenant.  Typically an script called init-runonce is used to do this.  This is typically a one time configuration for the Admin tenant.
 
 * [006_post_deploy.sh:](006_post_deploy.sh)
   * Runs kolla-ansible post-deploy to genterate credentials in /etc/kolla/admin-openrc.sh
@@ -213,7 +253,7 @@ The Debian functionality including AARCH64 support was contributed by Linaro, wh
   * Builds a k3OS image using packer.
 
 
-## Configuration 
+## Kolla-Ansible Configuration 
 
 Configuration is done via the included globals.yml file.
 The included Kolla globals.yml configuration file used to produce an OpenStack All-In-One.
@@ -246,3 +286,13 @@ EXT_NET_CIDR='10.1.1.0/24'
 EXT_NET_RANGE='start=10.1.1.210,end=10.1.1.240'
 EXT_NET_GATEWAY='10.1.1.1'
 ```
+
+# Generate passwords for use with kolla-ansible
+kolla-genpwd
+# Deploy kolla-ansible all-in-one
+kolla-ansible -i /usr/local/share/kolla-ansible/ansible/inventory/all-in-one certificates
+kolla-ansible -i /usr/local/share/kolla-ansible/ansible/inventory/all-in-one bootstrap-servers
+# need to install this to get it to work properly.
+# apt-get install -y python-backports.ssl-match-hostname -y
+kolla-ansible -i /usr/local/share/kolla-ansible/ansible/inventory/all-in-one prechecks
+
