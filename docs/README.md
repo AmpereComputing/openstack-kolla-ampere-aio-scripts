@@ -11,17 +11,15 @@ While researching the how's and what's to get to a working OpenStack deployment 
 Specifically kolla is used to build containers for the OpenStack services from source.  Kolla-ansible then uses the previously built containers to deploy a containerized OpenStack All-In-One (AIO) on an Ampere server. 
 
 
-# Requirements
+## Requirements
 The server is installed with standard Debian version 10.1.0 arm64 and OpenStack 8.1.0 Stein. In this configuration, the administrator can create virtual instances using various preloaded aarch64 operating systems (Debian, Fedora, Fedora-Atomic, Ubuntu, K3OS) through the Horizon web interface or via Terraform.
 [OpenStack Kolla](https://opendev.org/openstack/kolla) is used to build containers from source. Kolla-ansible is used to install OpenStack as an All-In-One deployment scenerio.
 
 <script  id="asciicast-276985" src="https://asciinema.org/a/276985.js" async data-autoplay="true" data-size="small" data-speed="2"></script>
 
-## Operating System Requirements
-
 * Netboot iso for [Debian Buster 10.1 ARM64](https://gensho.ftp.acc.umu.se/mirror/cdimage/release/10.1.0/arm64/iso-cd/debian-10.1.0-arm64-netinst.iso)
 
-## Installation Overview
+## Installation Steps
 
 The goal of the included scripts are to provide an easy way to replicate an OpenStack AIO deployment using Kolla and Kolla-ansible on AARCH64.
 The follow is the basic pattern for deploying using the supplied scripts.
