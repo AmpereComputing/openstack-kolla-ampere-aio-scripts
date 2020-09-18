@@ -8,15 +8,18 @@ Ampere is know for leading the industry with our Arm64 processors optimized for 
 
 While researching the how's and what's to get to a working OpenStack deployment for Aarch64 based platforms I went through different combinations and permutations of the different deployment tools for deploying OpenStack.   The results you will find here were the easiest and fastest way to achieve a working OpenStack which provides basic virtualization functionality.  At the current time, [OpenStack Kolla](https://opendev.org/openstack/kolla), and [OpenStack Kolla-Ansible](https://opendev.org/openstack/kolla-ansible) are the easiest way to deploy an OpenStack AIO on Aarch64 systems.   Additionally [Kolla](https://opendev.org/openstack/kolla) and [kolla-ansible](https://opendev.org/openstack/kolla-ansible) for Aarch64 are maintained in upstream continuous integration by the community ensuring a functioning OpenStack deployment for Arm based architectures.
 
-Specifically kolla is used to build containers for the OpenStack services from source.  Kolla-ansible then uses the previously built containers to deploy a containerized OpenStack All-In-One (AIO) on an Ampere server. 
+Specifically kolla is used to build containers for the OpenStack services from source.  Kolla-ansible then uses the previously built containers to deploy a containerized OpenStack All-In-One (AIO) on the Ampere server. 
 
 
 ## Requirements
-The server is installed with standard Debian version 10.1.0 arm64 and OpenStack 8.1.0 Stein. In this configuration, the administrator can create virtual instances using various preloaded aarch64 operating systems (Debian, Fedora, Fedora-Atomic, Ubuntu, K3OS) through the Horizon web interface or via Terraform.
-[OpenStack Kolla](https://opendev.org/openstack/kolla) is used to build containers from source. Kolla-ansible is used to install OpenStack as an All-In-One deployment scenerio.
 
+### Operating System
+As anyone who has attempted to install and deploy OpenStack knows, there are supported OSes, hardware patforms, and components that can be mixed and matched in multiple combinations and permutations, however for the purposes of this we are going to deploy the system and OpenStack services necessary to allow us to deploy aarch64 virtual machines on a single server with the basics for a good user experience.  At this time and from experience, Debian is the best choice for base OS platform for running the cloud and for using kolla-ansible with aarch64 platforms.   Given that RedHat and CentOS recently releasing "Offical" aarch64 based distributions, better experiences with other platforms may be in the future.
+
+The server used for the writing of this was installed with standard Debian version 10.x a for Arm64.  Debian releases 10.1-10.4 have been tried with no percievable difference between iterations when used in this context.  The OS is installed with a minimal configuration, only including a ssh server as the additional software selection.
 
 * Netboot iso for [Debian Buster 10.1 ARM64](https://gensho.ftp.acc.umu.se/mirror/cdimage/release/10.1.0/arm64/iso-cd/debian-10.1.0-arm64-netinst.iso)
+
 
 ## Installation Steps
 
@@ -41,13 +44,11 @@ update-alternatives --install /usr/bin/python python /usr/bin/python3.7 2
 
 Installing tooling
 
-
 ```
 apt-get install -y aptitude screen rsync git curl byobu asciinema tcpdump
 ```
 
 Installing Python Development packages
-
 
 ```
 apt-get install -y python3-dev python3-pip python3-selinux python3-setuptools python3-virtualenv libffi-dev gcc libssl-dev 
