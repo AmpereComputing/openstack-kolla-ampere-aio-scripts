@@ -24,107 +24,99 @@ The server used for the writing of this was installed with standard Debian versi
 
 ## Installation Steps
 
-The goal of the included scripts are to provide an easy way to replicate an OpenStack AIO deployment using Kolla and Kolla-ansible on AARCH64.
-The follow is the basic pattern for deploying using the supplied scripts.
+### Prepare /etc/hosts
 
-1. Deploy a minimal operating system with ssh access and git installed.
-1. Download this repository to the deployment target
-1. Make changes to [etc/kolla/globals.yml](etc/kolla/globals.yml) and [init-runonce](init-runonce) for your deployment needs.
-1. Run scripts from this repository in numerical order on the target host.
-
-### Prepare operating system for Kolla
-
-Install prerequisite packages and configure docker and kvm virtualization on Debian
-
-Switch to Using Python3 by default
-
-```
-update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
-update-alternatives --install /usr/bin/python python /usr/bin/python3.7 2
-```
-
-Installing tooling
-
-```
-apt-get install -y aptitude screen rsync git curl byobu asciinema tcpdump
-```
-
-Installing Python Development packages
-
-```
-apt-get install -y python3-dev python3-pip python3-selinux python3-setuptools python3-virtualenv libffi-dev gcc libssl-dev 
-```
-
-Upgrade pip
-```
-pip3 install -U pip
-```
-
-Install docker and other virtualiziation tools
-
-```
-apt-get install -y docker.io bridge-utils cpu-checker libvirt-daemon* qemu-system qemu-efi virtinst virt-manager open-iscsi
-
-```
-
-
-Modify /etc/hosts file and comment out the line that begins with 127.0.1.1
+Modify /etc/hosts file and comment out or remove the line that begins with 127.0.1.1.   This caused issues with the kolla-ansible deploy process and the ability for containers to resolve names back to the host. Removing it ensures a smooth run of kolla-ansible.
 
 ```
 sed -i 's/^127.0.1.1/#127.0.1.1/' /etc/hosts
 
 ```
 
+### Preparing the Python stack for Kolla and Kolla-ansible
+[Kolla](https://opendev.org/openstack/kolla) and [kolla-ansible](https://opendev.org/openstack/kolla-ansible) are both Python based projects.  Therefore our first steps after installation are to prepare the python software stack and install any additional python dependencies.  To keep things on a more modern track we will first switch to Using Python3 by default on the base Debian platform by running the following commands.
 
-### Install Kolla and Kolla-ansible from source on Debian
+```
+update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
+update-alternatives --install /usr/bin/python python /usr/bin/python3.7 2
+```
 
+Next install the required python development packages from default Debian package repositories.
 
-Configure libvirt services for kolla
+```
+apt-get install -y python3-dev python3-pip python3-selinux python3-setuptools python3-virtualenv libffi-dev gcc libssl-dev 
+```
 
-Stop Libvirtd
+Next we will use pip, the python package management tool, to upgrade pip itself before installing any additional python from source.
+
+```
+pip3 install -U pip
+```
+
+### Virtualization, Docker and Additional software.
+
+Once the changes to python stack have been made the next steps in the process are to deploy additional software requirements from the debian package mirrors.  Again no changes to the Apt repository configuration were necessary.
+
+Installing some useful tooling to aid during debugging, troubleshooting or collecting output, is always useful.  These packages my not be manditory, but were useful in general.
+
+```
+apt-get install -y aptitude screen rsync git curl byobu asciinema tcpdump
+```
+
+Next install docker and other virtualiziation tools from Debian packaging.
+
+```
+apt-get install -y docker.io bridge-utils cpu-checker libvirt-daemon* qemu-system qemu-efi virtinst virt-manager open-iscsi
+
+```
+
+### Disable local services.
+
+#### Libvirt
+In the previous steps we essentially installed the software necessary to configure hypervisor functionality on the host platform.   However because all the components of the OpenStack [kolla-ansible](https://opendev.org/openstack/kolla-ansible) deployment are containerized the packages essentially are used to layout the filesystem structure that will map back into some of the containers providing functionality.
+
+Configure libvirt services for kolla by disabling all libvirt services.
 
 ```
 systemctl stop libvirtd.service
 systemctl disable libvirtd.service
 ```
 
-Stop Libvirt-guests
+Stop and disable the Libvirt-guests service.
 
 ```
 systemctl stop libvirt-guests.service
 systemctl disable libvirt-guests.service
 ```
 
-Stop virtlockd
+Stop virtlockd and virtlockd-admin
 
 ```
 systemctl stop virtlockd.service
 systemctl disable virtlockd.service
-```
-
-Stop virtlockd-admin
-
-```
 systemctl stop virtlockd-admin.service
 systemctl disable virtlockd-admin.service
 ```
 
-
-Stop all Open-Iscsi services
+#### Open-iscsi
+Iscsi services are used when running cinder in order to provide block storage services.  Although we my not be using them yet, we will install and stop all open-iscsi services to be prepaired for when or if we want to try cinder as well later.
 
 ```
 systemctl stop open-iscsi.service
-systemctl dsiable open-iscsi.service
+systemctl disable open-iscsi.service
 systemctl stop iscsid.service
 systemctl disable iscsid.service
 ```
 
-Disable Apparmor libvirt profile
+#### Disable Apparmor libvirt profile
+
+It is necessary to disable the default Apparmor profile for libvirt in order for the containerized libvirt to function properly.
 
 ```
 apparmor_parser -R /etc/apparmor.d/usr.sbin.libvirtd
-
 ```
+
+### Install Kolla and Kolla-ansible from source on Debian
 
 Change to /opt and get sources
 
