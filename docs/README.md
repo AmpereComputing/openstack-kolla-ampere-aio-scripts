@@ -14,19 +14,22 @@ Some basic understanding of the parts used is useful for better understanding of
 
 ## Requirements
 
-### Operating System
-As anyone who has attempted to install and deploy OpenStack knows, there are supported OSes, hardware patforms, and components that can be mixed and matched in multiple combinations and permutations, however for the purposes of this we are going to deploy the system and OpenStack services necessary to allow us to deploy aarch64 virtual machines on a single server with the basics for a good user experience.  At this time and from experience, Debian is the best choice for base OS platform for running the cloud and for using kolla-ansible with aarch64 platforms.   Given that RedHat and CentOS recently releasing "Offical" aarch64 based distributions, better experiences with other platforms may be in the future.
+As anyone who has attempted to install and deploy OpenStack knows, there are supported OSes, hardware patforms, and components that can be mixed and matched in multiple combinations and permutations, however for the purposes of this we are going to deploy the system and OpenStack services necessary to allow us to deploy aarch64 virtual machines on a single server with the basics for a good user experience. 
 
-The server used for the writing of this was installed with standard Debian version 10.x a for Arm64.  Debian releases 10.1-10.4 have been tried with no percievable difference between iterations when used in this context.  The OS is installed with a minimal configuration, only including a ssh server as the additional software selection.
+### Operating System
+
+At this time and from experience, [Debian](https://debian.org) is the best choice for base OS platform for running the cloud and for using kolla-ansible with aarch64 platforms.   Given that RedHat and CentOS recently releasing "Offical" aarch64 based distributions, better experiences with other platforms may be in the future.
+
+The server used for the writing of this was installed with standard Debian version 10.x for Arm64.  Debian releases 10.1-10.4 have been tried with no percievable difference between iterations when used in this context of this deployment.  The OS is installed in a minimal configuration, only including a ssh server as the additional software selection.
 
 * Netboot iso for [Debian Buster 10.1 ARM64](https://gensho.ftp.acc.umu.se/mirror/cdimage/release/10.1.0/arm64/iso-cd/debian-10.1.0-arm64-netinst.iso)
 
-
-## Installation Steps
+## Host configuration and Software Installation
+After you have functional [Debian](https://debian.org) deployment.  Log into the new installation as the "root" user.  The following steps assume that you are using the "root" user account throughout the deployment process and not running the commands via sudo.
 
 ### Prepare /etc/hosts
 
-Modify /etc/hosts file and comment out or remove the line that begins with 127.0.1.1.   This caused issues with the kolla-ansible deploy process and the ability for containers to resolve names back to the host. Removing it ensures a smooth run of kolla-ansible.
+Modify /etc/hosts file and comment out or remove the line that begins with 127.0.1.1.   This caused issues with the kolla-ansible deploy process and the ability for containers to resolve names back to the host. Removing it ensures a smooth run of kolla-ansible.  The following sed line will comment out any offending line.
 
 ```
 sed -i 's/^127.0.1.1/#127.0.1.1/' /etc/hosts
