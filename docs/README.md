@@ -173,18 +173,33 @@ cp etc/kolla/globals.yml /etc/kolla/globals.yml
 
 
 
-* [002_centos_install_kolla.sh:](002_install_kolla.sh)
-  * Installs Kolla and Kolla-ansible from source on Centos
 * [003_build_containers.sh:](003_build_containers.sh)
   * Uses `kolla-build` to build Debian containers from source on the deployment host.
   * Process wrapped in `asciinema` for recording build console output.
+
+Building Kolla Images
+
+Container images can be rebuilt at any time through the use of the `kolla-build` command.
+Kolla supports different operating system options for the Docker containers.
+During the process of building this both Ubuntu and Debian were attempted.
+Currently Debian was fully funcitonal where at the time this was created Ubuntu 18.04 was unable to sucessfully deploy a virtual machine with Libvirt running containerized.
+The Debian functionality including AARCH64 support was contributed by Linaro, whom currently still actively contributes to the maintaince of the AARCH64 integration.
+
+
+
 * [003_build_containers.sh:](003_centos_build_containers.sh)
   * Uses `kolla-build` to build Centos containers from source on the deployment host.
   * Process wrapped in `asciinema` for recording build console output.
+
+### Running Kolla-ansible
+
 * [004_kolla_pre_deploy.sh:](004_kolla_pre_deploy.sh)
   * Runs kolla-ansible generate-certificates, bootstrap-servers and prechecks before deploy
 * [005_kolla_deploy.sh:](005_kolla_deploy.sh)
   * Runs kolla-ansible deploy wrapped in Acsiinema for recording deploy console output.
+
+### Configuring OpenStack
+
 * [006_post_deploy.sh:](006_post_deploy.sh)
   * Runs kolla-ansible post-deploy to genterate credentials in /etc/kolla/admin-openrc.sh
   * Executes init-runonce with information specific to our network deployment in order to prepopulate project, network, subnet, image, keys for admin
@@ -197,30 +212,7 @@ cp etc/kolla/globals.yml /etc/kolla/globals.yml
 * [009_k3OS_packer_image.sh:](009_k3OS_packer_image.sh)
   * Downloads source with OpenStack packer template for [k3OS](https://github.com/ppouliot/k3os)
   * Builds a k3OS image using packer.
-* [010_ironic_deploy_image_tools.sh](010_ironic_deploy_image_tools.sh)
-  * Download and install ironic tooling from source
-* [011_ironic_deploy_image_create.sh](011_ironic_deploy_image_create.sh)
-  * Run ironic-python-agent-builder to create ironic deploy kernel and initrd
-* [012_ironic_publish_deploy_image_create_baremetal_flavor.sh](012_ironic_publish_deploy_image_create_baremetal_flavor.sh)
-  * Run ironic-python-agent-builder to create ironic deploy kernel and initrd
-* [013_ironic_register_node.sh]()
-* [init-runonce:](init-runonce) Modified init-runonce with values that will work on network.
 
-
-## Building Kolla Images
-
-Container images can be rebuilt at any time through the use of the `kolla-build` command.
-Kolla supports different operating system options for the Docker containers.
-During the process of building this both Ubuntu and Debian were attempted.
-Currently Debian was fully funcitonal where at the time this was created Ubuntu 18.04 was unable to sucessfully deploy a virtual machine with Libvirt running containerized.
-The Debian functionality including AARCH64 support was contributed by Linaro, whom currently still actively contributes to the maintaince of the AARCH64 integration.
-
-###  Paste Logs from Ubuntu 18.04 Libvirt failures
-
-For those interested the following information was gathered during the troubleshooting of the issues with Livbvirtd containerized in this deployment
-
-  * [libvirtd.log](http://paste.openstack.org/show/781097/)
-  * [nova-compute.log](http://paste.openstack.org/show/781098/)
 
 ## Configuration 
 
