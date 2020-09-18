@@ -33,8 +33,6 @@ The follow is the basic pattern for deploying using the supplied scripts.
 * [001_enable_docker_and_virtualization.sh:](001_enable_docker_and_virtualization.sh)
   * Installs prerequisite packages and configures docker and kvm virtualization on Debian
 
-```
-
 Switch to Using Python3 by default
 
 ```
