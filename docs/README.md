@@ -160,12 +160,13 @@ Copy the kolla-build.conf to /etc/kolla
 cp /usr/local/share/kolla/etc_examples/oslo-config-generator/kolla-build.conf /etc/kolla/
 ```
 
-# Get the Working Globals.yml
-# wget https://raw.githubusercontent.com/AmpereComputing/openstack-kolla-aio-scripts/master/etc/kolla/globals.yml -O /etc/kolla/globals.yml
-cd $PROJECT_DIR
+copy Globals.yml
+
+
+```
 cp etc/kolla/globals.yml /etc/kolla/globals.yml
 
-# Create /etc/kolla/config/global.conf
+```
 
 
 
