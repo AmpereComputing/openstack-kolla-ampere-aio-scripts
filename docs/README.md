@@ -286,13 +286,3 @@ EXT_NET_CIDR='10.1.1.0/24'
 EXT_NET_RANGE='start=10.1.1.210,end=10.1.1.240'
 EXT_NET_GATEWAY='10.1.1.1'
 ```
-
-# Generate passwords for use with kolla-ansible
-kolla-genpwd
-# Deploy kolla-ansible all-in-one
-kolla-ansible -i /usr/local/share/kolla-ansible/ansible/inventory/all-in-one certificates
-kolla-ansible -i /usr/local/share/kolla-ansible/ansible/inventory/all-in-one bootstrap-servers
-# need to install this to get it to work properly.
-# apt-get install -y python-backports.ssl-match-hostname -y
-kolla-ansible -i /usr/local/share/kolla-ansible/ansible/inventory/all-in-one prechecks
-
