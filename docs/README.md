@@ -15,7 +15,6 @@ Specifically kolla is used to build containers for the OpenStack services from s
 The server is installed with standard Debian version 10.1.0 arm64 and OpenStack 8.1.0 Stein. In this configuration, the administrator can create virtual instances using various preloaded aarch64 operating systems (Debian, Fedora, Fedora-Atomic, Ubuntu, K3OS) through the Horizon web interface or via Terraform.
 [OpenStack Kolla](https://opendev.org/openstack/kolla) is used to build containers from source. Kolla-ansible is used to install OpenStack as an All-In-One deployment scenerio.
 
-<script  id="asciicast-276985" src="https://asciinema.org/a/276985.js" async data-autoplay="true" data-size="small" data-speed="2"></script>
 
 * Netboot iso for [Debian Buster 10.1 ARM64](https://gensho.ftp.acc.umu.se/mirror/cdimage/release/10.1.0/arm64/iso-cd/debian-10.1.0-arm64-netinst.iso)
 
