@@ -151,11 +151,12 @@ Prep the Kolla configuration directory
 mkdir -p /etc/kolla/config
 ```
 
-Copy the base templates
+Copy the base globals.yml and passwords.yml
+
 
 ```
-cp -R kolla-ansible/etc/kolla/* /etc/kolla
-
+cp /usr/local/share/kolla-ansible/etc_examples/kolla/globals.yml /etc/kolla/globals.yml
+cp /usr/local/share/kolla-ansible/etc_examples/kolla/passwords.yml /etc/kolla/passwords.yml
 ```
 
 Copy the kolla-build.conf to /etc/kolla
@@ -164,22 +165,18 @@ Copy the kolla-build.conf to /etc/kolla
 cp /usr/local/share/kolla/etc_examples/oslo-config-generator/kolla-build.conf /etc/kolla/
 ```
 
-copy Globals.yml
 
+### Using Kolla to build container images
 
-```
-cp /usr/local/share/kolla-ansible/etc_examples/kolla/globals.yml /etc/kolla/globals.yml
-```
+The key distinction between "kolla" and "kolla-ansile" is that kolla provides the tooling to build container images for openstack services from package or source on multiple linux platforms.  Kolla-ansible provides the tooling for deploying the images built with Kolla.  As such cvontainer images can be built rebuilt at any time through the use of the `kolla-build` command.
 
+As mentioned Kolla supports different operating system options for the Docker containers used when building OpenStack containers..
+During the process of building this both Ubuntu and Debian were attempted. At this time, Debian was fully funcitonal where at the time this was created Ubuntu 18.04 was unable to sucessfully deploy a virtual machine with Libvirt running containerized.  Obviously this may change over time.
+The Debian functionality including AARCH64 support was contributed by Linaro, whom currently still actively contributes to the maintaince and continuous integration for the AARCH64 integration.
 
+Building container images using kolla will take some time, as all OpenStack containers images are built.   Customization of the container images during build are outside of the scope of this documen, and please refer to the upstream Kolla documentation for more information.
 
-### Building Kolla Container Images
-
-Container images can be rebuilt at any time through the use of the `kolla-build` command.
-Kolla supports different operating system options for the Docker containers.
-During the process of building this both Ubuntu and Debian were attempted.
-Currently Debian was fully funcitonal where at the time this was created Ubuntu 18.04 was unable to sucessfully deploy a virtual machine with Libvirt running containerized.
-The Debian functionality including AARCH64 support was contributed by Linaro, whom currently still actively contributes to the maintaince of the AARCH64 integration.
+To build contantainer images using Debian as the base operating system and using OpenStack source:
 
 ```
 kolla-build -b debian -t source
@@ -187,7 +184,8 @@ kolla-build -b debian -t source
 
 ### Kolla-Ansible Configuration 
 
-Configuration is done via the included globals.yml file.
+Kolla-ansible configuration is done via the '/etc/kolla/globals.yml' file.   The file contains options for tuning which OpenStack features and services are enabled during the deployment.
+
 The included Kolla globals.yml configuration file used to produce an OpenStack All-In-One.
 You will need to edit this file and change necessary information prior to the deploy process.
 
@@ -240,44 +238,10 @@ Deploy OpenStack.
 kolla-ansible -i /usr/local/share/kolla-ansible/ansible/inventory/all-in-one deploy
 ```
 
-### Configuring OpenStack
+### Configuring OpenStack for first use
 Once the openstack services are deployed you will need to do some basic configuration to make the cloud usable.    You will need to configure information specific to your network deployment in order to pre populate project, network, subnet, image, keys for the admin tenant.  Typically an script called init-runonce is used to do this.  This is typically a one time configuration for the Admin tenant.
-
-* [006_post_deploy.sh:](006_post_deploy.sh)
   * Runs kolla-ansible post-deploy to genterate credentials in /etc/kolla/admin-openrc.sh
   * Executes init-runonce with information specific to our network deployment in order to prepopulate project, network, subnet, image, keys for admin
-* [007_terraform.sh:](007_terraform.sh)
-  * Installs [Terraform](https://terraform.io) to use to automate interaction with the cloud resources available on the deployed OpenStack AIO
-  * Downloads source for [terraform-openstack-images](https://github.com/amperecomputing/terraform-openstack-images)
-  * Runs terraform to deploy a base set of AARCH64 QCOW2 images onto the OpenStack AIO
-* [008_packer.sh:](008_packer.sh)
-  * Downloads and installs [Packer](https://packer.io)
-* [009_k3OS_packer_image.sh:](009_k3OS_packer_image.sh)
-  * Downloads source with OpenStack packer template for [k3OS](https://github.com/ppouliot/k3os)
-  * Builds a k3OS image using packer.
-
-
-## Kolla-Ansible Configuration 
-
-Configuration is done via the included globals.yml file.
-The included Kolla globals.yml configuration file used to produce an OpenStack All-In-One.
-You will need to edit this file and change necessary information prior to the deploy process.
-
-* [etc/kolla/globals.yml](etc/kolla/globals.yml)
-
-The modifications that were made to the global.yml to produce a working AIO during this process were:
-
-```
-kolla_base_distro: "debian"
-openstack_release: "8.1.0"
-kolla_internal_vip_address: "10.1.1.88"
-network_interface: "enp1s0"
-neutron_external_interface: "enx00051bb122ed"
-nova_compute_virt_type: "kvm"
-enable_haproxy: "no"
-```
-
-** Please note that the neutron_external_interface is actually a USB nic that was used to provide a second interface on the working system.   The interfaces and addresses  must be changed to the appropriate working and active network interfaces for the deployment to be successful. **
 
 Additionally `init-runonce` is executed during the script processes.  Modifications will be necessary to ensure a proper functioning OpenStack deployment after installation.
 
