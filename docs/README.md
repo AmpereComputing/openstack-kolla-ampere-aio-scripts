@@ -168,8 +168,7 @@ copy Globals.yml
 
 
 ```
-cp etc/kolla/globals.yml /etc/kolla/globals.yml
-
+cp /usr/local/share/kolla-ansible/etc_examples/kolla/globals.yml /etc/kolla/globals.yml
 ```
 
 
