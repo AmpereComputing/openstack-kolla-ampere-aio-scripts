@@ -37,6 +37,7 @@ sed -i 's/^127.0.1.1/#127.0.1.1/' /etc/hosts
 ```
 
 ### Preparing the Python stack for Kolla and Kolla-ansible
+
 [Kolla](https://opendev.org/openstack/kolla) and [kolla-ansible](https://opendev.org/openstack/kolla-ansible) are both Python based projects.  Therefore our first steps after installation are to prepare the python software stack and install any additional python dependencies.  To keep things on a more modern track we will first switch to Using Python3 by default on the base Debian platform by running the following commands.
 
 ```
@@ -50,7 +51,7 @@ Next install the required python development packages from default Debian packag
 apt-get install -y python3-dev python3-pip python3-selinux python3-setuptools python3-virtualenv libffi-dev gcc libssl-dev 
 ```
 
-Next we will use pip, the python package management tool, to upgrade pip itself before installing any additional python from source.
+When using Kolla and Kolla-ansible it is best to use the lastest version of pip, python's package management utility.  We will use pip to upgrade pip itself before installing any additional python from package or from source.
 
 ```
 pip3 install -U pip
@@ -66,7 +67,7 @@ Installing some useful tooling to aid during debugging, troubleshooting or colle
 apt-get install -y aptitude screen rsync git curl byobu asciinema tcpdump
 ```
 
-Next install docker and other virtualiziation tools from Debian packaging.
+We need both a container engine and virtualization enabled on the host. Next install docker and other virtualiziation tools from Debian packaging.
 
 ```
 apt-get install -y docker.io bridge-utils cpu-checker libvirt-daemon* qemu-system qemu-efi virtinst virt-manager open-iscsi
@@ -76,6 +77,7 @@ apt-get install -y docker.io bridge-utils cpu-checker libvirt-daemon* qemu-syste
 ### Disable local services.
 
 #### Libvirt
+
 In the previous steps we essentially installed the software necessary to configure hypervisor functionality on the host platform.   However because all the components of the OpenStack [kolla-ansible](https://opendev.org/openstack/kolla-ansible) deployment are containerized the packages essentially are used to layout the filesystem structure that will map back into some of the containers providing functionality.
 
 Configure libvirt services for kolla by disabling all libvirt services.
@@ -102,6 +104,7 @@ systemctl disable virtlockd-admin.service
 ```
 
 #### Open-iscsi
+
 Iscsi services are used when running cinder in order to provide block storage services.  Although we my not be using them yet, we will install and stop all open-iscsi services to be prepaired for when or if we want to try cinder as well later.
 
 ```
@@ -121,18 +124,23 @@ apparmor_parser -R /etc/apparmor.d/usr.sbin.libvirtd
 
 ### Install Kolla and Kolla-ansible from source on Debian
 
-Change to /opt and get sources
+Change to /usr/local/src and get sources
 
 ```
-cd /opt
+cd /usr/local/src
 git clone https://opendev.org/openstack/kolla
 git clone https://opendev.org/openstack/kolla-ansible
+```
+
+Install ansible from pip packages.  Currently ansible has major changes when moving from version 2.9.x to 2.10.x.   At this time Kolla-ansible is not compatible with the newere 2.10.x ansible version and only supports ansible 2.9.x.
+
+```
+pip install -U 'ansible<2.9'
 ```
 
 Install Kolla and Kolla-ansible
 
 ```
-pip install -U ansible
 pip install ./kolla/
 pip install ./kolla-ansible/
 ```
