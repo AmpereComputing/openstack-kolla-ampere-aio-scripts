@@ -21,6 +21,7 @@
 * [Running Kolla-ansible](#running-kolla-ansible)
   * [Kolla-Ansible Pre Deployment](#kolla-ansible-pre-deployment)
   * [Deploy using Kolla-ansible](#deploy-using-kolla-ansible)
+* [Post Deployment](#post-deployment)
   * [Configuring OpenStack for first use](#configuring-openstack-for-first-use)
 
 ## Introduction
@@ -260,6 +261,8 @@ Deploy OpenStack by executing the folowing command:
 ```
 kolla-ansible -i /usr/local/share/kolla-ansible/ansible/inventory/all-in-one deploy
 ```
+
+### Post Deployment
 
 Once the deploy runs finishes you will also need to generate the authentication credentials. The `post-deploy` option for kolla-ansible creates a file in /etc/kolla/admin-openrc.sh which can thewn be sourced to allow the admin user to authenticate to the OpenStack services and use openstack clients.
 
