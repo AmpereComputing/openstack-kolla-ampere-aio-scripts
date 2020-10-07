@@ -2,6 +2,27 @@
 
 # Deploying an Openstack All-in-One deployment on Ampere Aarch64 Servers
 
+## Table of Contents
+* [Introdocution](#introduction)
+* [Kolla/Kolla-Ansible Primer](#kolla/kolla-ansible-primer)
+* [Requirements](#requirements)
+  * [Operating System](#operating-system)
+* [Host configuration and Software Installation](#host-configuration-and-software-installation)
+  * [Prepare hosts file](#prepare-hosts-file)
+  * [Preparing the Python stack](#preparing-the-python-stack)
+  * [Virtualization and Docker](#virtualization-and-docker)
+  * [Disable host services](#disable-host-services)
+   * [Libvirt](#libvirt)
+   * [Open-iscsi](#open-iscsi)
+   * [Disable Apparmor libvirt profile](#disable-apparmor-libvirt-profile)
+  * [Install Kolla and Kolla-ansible from source on Debian](#install-kolla-and-kolla-ansible-from-source-on-debian)
+  * [Using Kolla to build container images](#using-kolla-to-build-container-images)
+  * [Kolla-Ansible Configuration ](#kolla-ansible-configureation)
+* [Running Kolla-ansible](#running-kolla-ansible)
+  * [Kolla-Ansible Pre Deployment](#kolla-ansible-pre-deployment)
+  * [Deploy using Kolla-ansible(#deploy-using-kolla-ansible)
+  * [Configuring OpenStack for first use](#configuring-openstack-for-first-use)
+
 ## Introduction
 
 Ampere is known for leading the industry with our Arm64 processors optimized for cloud workloads. In many discussions with opensource developers, we get asked for some usescases for all (can you explain all? ) that compute power.  Obviously virtualization and containerization immediately come to mind when we think about how to take advantage of all those Arm64 cores.  OpenStack is a great workload to test and show the capabilities of Ampere servers. This is  because it provides a managment API framework for providing different cloud releated services/analogs to Amazon/Azure/GCE that can be deployed within ones own datacenter.  Once  deployed, one can utilize devops tooling with the provided OpenStack APIs to quickly deploy virtual machine resources at scale.  The goal of this post is to provide a technical guide to assist in the deployment of an OpenStack All-In-One deployment for servers with Arm64 processors.
@@ -27,7 +48,7 @@ The server used for the writing of this was installed with standard Debian versi
 ## Host configuration and Software Installation
 After you have functional [Debian](https://debian.org) deployment,  log into the new installation as the "root" user.  The following steps assume that you are using the "root" user account throughout the deployment process and not running the commands via sudo.
 
-### Prepare /etc/hosts
+### Prepare hosts file
 
 Modify /etc/hosts file and comment out or remove the line that begins with 127.0.1.1. Otherwise, this causes issues with the kolla-ansible deployment process and the ability for containers to resolve names back to the host. Removing it ensures a smooth run of kolla-ansible.  The following sed line will comment out any offending line.
 
@@ -36,7 +57,7 @@ sed -i 's/^127.0.1.1/#127.0.1.1/' /etc/hosts
 
 ```
 
-### Preparing the Python stack for Kolla and Kolla-ansible
+### Preparing the Python stack
 
 [Kolla](https://opendev.org/openstack/kolla) and [kolla-ansible](https://opendev.org/openstack/kolla-ansible) are both Python based projects.  Therefore, our first step after installation is to prepare the python software stack and install any additional python dependencies.  To keep things on a more modern track, we will first switch to using Python3 by default on the base Debian platform by running the following commands.
 
@@ -57,7 +78,7 @@ When using Kolla and Kolla-ansible, it is best to use the lastest version of pip
 pip3 install -U pip
 ```
 
-### Virtualization, Docker and Additional software.
+### Virtualization and Docker
 
 Once the changes to python stack have been made, the next step in the process is to deploy additional software requirements from the debian package mirrors.  Again no changes to the Apt repository configuration were necessary.(what is the Apt repository, not clear to me)
 
@@ -74,7 +95,7 @@ apt-get install -y docker.io bridge-utils cpu-checker libvirt-daemon* qemu-syste
 
 ```
 
-### Disable local services.
+### Disable host services.
 
 #### Libvirt
 
@@ -232,7 +253,7 @@ Run prechecks to validate everything prior to running kolla-ansible deploy.
 ```
 kolla-ansible -i /usr/local/share/kolla-ansible/ansible/inventory/all-in-one prechecks
 ```
-
+### Deploy using Kolla-ansible
 Deploy OpenStack.
 
 ```
