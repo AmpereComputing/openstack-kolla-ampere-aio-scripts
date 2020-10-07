@@ -254,10 +254,45 @@ Run prechecks to validate everything prior to running kolla-ansible deploy.
 kolla-ansible -i /usr/local/share/kolla-ansible/ansible/inventory/all-in-one prechecks
 ```
 ### Deploy using Kolla-ansible
-Deploy OpenStack.
+
+Deploy OpenStack by executing the folowing command:
 
 ```
 kolla-ansible -i /usr/local/share/kolla-ansible/ansible/inventory/all-in-one deploy
+```
+
+Once the deploy runs finishes you will also need to generate the authentication credentials. The `post-deploy` option for kolla-ansible creates a file in /etc/kolla/admin-openrc.sh which can thewn be sourced to allow the admin user to authenticate to the OpenStack services and use openstack clients.
+
+Execute kolla-ansible post-deploy as follows.
+
+```
+kolla-ansible -i /usr/local/share/kolla-ansible/ansible/inventory/all-in-one post-deploy
+```
+The following is an example of the contents of /etc/kolla/admin-openrc.sh.
+
+```
+# Clear any old environment that may conflict.
+for key in $( set | awk '{FS="="}  /^OS_/ {print $1}' ); do unset $key ; done
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USER_DOMAIN_NAME=Default
+export OS_PROJECT_NAME=admin
+export OS_TENANT_NAME=admin
+export OS_USERNAME=admin
+export OS_PASSWORD=aBCdefGhiJklMNOpQRSTuvWxYz1234567890AbcD
+export OS_AUTH_URL=http://192.168.1.2:35357/v3
+export OS_INTERFACE=external
+export OS_ENDPOINT_TYPE=externallURL
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+export OS_AUTH_PLUGIN=password
+ansible@pinyon:~/terraform/terra
+```
+
+
+When the`post-deploy` command finishes the necessary credentials for authenticating to openstack services can be loaded into current environment by running the following command:
+
+```
+source /etc/kolla/admin-openrc.sh
 ```
 
 ### Configuring OpenStack for first use
