@@ -230,7 +230,8 @@ All the openstack services require passwords for authenticating to each service 
 kolla-genpwd
 ```
 
-Additionally here is an example of the content within the `/etc/kolla/passwords.yml` file.
+<details>
+<summary>Click here to see an example of the content within the `/etc/kolla/passwords.yml` file.</summary>
 
 ```
 aodh_database_password: dhoz7ORFyLOqfnuWAYXBB296jMjRgP1d74l0jWLp
@@ -796,6 +797,7 @@ zun_keystone_password: 6KD0kr4ihQ06YtnTmjqiw35JFK0f2eEgShyvwhve
 
 ```
 
+</details>
 
 
 Generate certificates for the deployment.
