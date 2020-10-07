@@ -825,7 +825,7 @@ kolla-ansible -i /usr/local/share/kolla-ansible/ansible/inventory/all-in-one dep
 
 ### Post Deployment
 
-Once the deploy runs finishes you will also need to generate the authentication credentials. The `post-deploy` option for kolla-ansible creates a file in /etc/kolla/admin-openrc.sh which can thewn be sourced to allow the admin user to authenticate to the OpenStack services and use openstack clients.
+Once the deploy runs finishes you will also need to generate the authentication credentials. The `post-deploy` option for kolla-ansible creates a file in /etc/kolla/admin-openrc.sh which can be sourced to set all the necessary environment variables in the current session to allow the admin user to authenticate to the OpenStack services and use openstack clients and third party tooling like terraform and packer.
 
 Execute kolla-ansible post-deploy as follows.
 
