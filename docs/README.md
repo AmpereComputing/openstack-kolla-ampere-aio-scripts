@@ -229,10 +229,10 @@ All the openstack services require passwords for authenticating to each service 
 ```
 kolla-genpwd
 ```
-*** Note: To see an example of the content within the `/etc/kolla/passwords.yml` file: ***
+ An example of the content within the `/etc/kolla/passwords.yml` file can be seen by clicking below.
 
 <details>
-<summary>Click here!</summary>
+<summary>/etc/kolla/passwords.yml</summary>
 
 ```
 aodh_database_password: dhoz7ORFyLOqfnuWAYXBB296jMjRgP1d74l0jWLp
