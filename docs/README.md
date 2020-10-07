@@ -20,7 +20,7 @@
   * [Kolla-Ansible Configuration ](#kolla-ansible-configureation)
 * [Running Kolla-ansible](#running-kolla-ansible)
   * [Kolla-Ansible Pre Deployment](#kolla-ansible-pre-deployment)
-  * [Deploy using Kolla-ansible(#deploy-using-kolla-ansible)
+  * [Deploy using Kolla-ansible](#deploy-using-kolla-ansible)
   * [Configuring OpenStack for first use](#configuring-openstack-for-first-use)
 
 ## Introduction
