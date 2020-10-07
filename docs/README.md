@@ -849,7 +849,6 @@ export OS_ENDPOINT_TYPE=externallURL
 export OS_IDENTITY_API_VERSION=3
 export OS_REGION_NAME=RegionOne
 export OS_AUTH_PLUGIN=password
-ansible@pinyon:~/terraform/terra
 ```
 
 
