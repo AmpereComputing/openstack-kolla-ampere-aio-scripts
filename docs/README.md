@@ -23,6 +23,7 @@
   * [Deploy using Kolla-ansible](#deploy-using-kolla-ansible)
 * [Post Deployment](#post-deployment)
   * [Configuring OpenStack for first use](#configuring-openstack-for-first-use)
+  * [Starting a Virtual Machine](#starting-a-virtual-machine)
 
 ## Introduction
 
@@ -889,6 +890,8 @@ EXT_NET_GATEWAY='10.1.1.1'
 ```
 
 Once the changes are made then you will need to execute the `init-runonce`.  When it is completed executing, you should have a fully configured ADMIN tenant with an Debian image for use creating virtual machines.
+
+### Starting a virtual machine
 
 To create a virtual machine using the Debian image added during the init-runonce, you will need to execute the following command:
 
