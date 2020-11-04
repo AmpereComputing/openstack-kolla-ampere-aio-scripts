@@ -860,18 +860,32 @@ source /etc/kolla/admin-openrc.sh
 ```
 
 ### Configuring OpenStack for first use
-Once the openstack services are deployed you will need to do some basic configuration to make the cloud usable. You will need to configure information specific to your network deployment in order to pre populate project, network, subnet, image, keys for the admin tenant.  Typically a script called init-runonce is used to do this.  This is typically a one time configuration for the Admin tenant.
-  * Runs [kolla-ansible](https://opendev.org/openstack/kolla-ansible) post-deploy to genterate credentials in /etc/kolla/admin-openrc.sh
-  * Executes init-runonce with information specific to our network deployment in order to prepopulate project, network, subnet, image, keys for admin
 
-Additionally `init-runonce` is executed during the script processes.  Modifications will be necessary to ensure a proper functioning OpenStack deployment after installation.
+Once the OpenStack services are deployed on the host and authentication credentials are created and sourced, it is necessary to do some basic configuration to make the cloud usable. Configuration information specific to your network deployment is used in order to pre populate project, network, subnet, image, sshkeys for the OpenStack admin tenant.  A script called init-runonce, which is included with the kolla-ansible installation, is used to do this one time configuration for the Admin tenant.
+As mentioned, modifications to the init-runonce will be necessary to ensure a proper functioning OpenStack deployment after installation. The changes represent the network information of the subnet of the host's active interface with a range of IP addresses that can be used for assigning `floating-ips` to the virtual machine instances, as well as an operating system image to inject into OpenStack Glance.
 
-* [init-runonce](init-runonce)
+The default location of the init-runonce script after the [kolla-ansible](https://opendev.org/openstack/kolla-ansible) installation is as follows:
 
-Theses changes represent the Network information of the subnet of the active interface with a range of IP addresses that can be used for assigning `floating-ips` to the virtual machine instances.  The changes used in the this example are the following:
+```
+/usr/local/share/kolla-ansible/init-runonce
+```
+
+Copy or edit the `init-runonce` to suit the needs of your deployment environment. The changes that must be made to the init-runonce in order to used in the this example are the following:
+
+Replace the default cirros images with a Debian cloud image.
+
+```
+IMAGE_URL=https://cdimage.debian.org/cdimage/openstack/current-10/
+IMAGE=debian-10-openstack-arm64.qcow2
+IMAGE_NAME=debian-10-openstack-arm64-qcow2
+```
+
+Replace the networking infromation for the Floating IPs ranges.
 
 ```
 EXT_NET_CIDR='10.1.1.0/24'
 EXT_NET_RANGE='start=10.1.1.210,end=10.1.1.240'
 EXT_NET_GATEWAY='10.1.1.1'
 ```
+
+Once the changes are made, and need you execute the `init-runonce`.  When it is completed executing, you should have a fully configured ADMIN tenant with an Debian image for use creating virtual machines.
