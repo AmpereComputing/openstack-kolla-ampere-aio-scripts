@@ -888,4 +888,10 @@ EXT_NET_RANGE='start=10.1.1.210,end=10.1.1.240'
 EXT_NET_GATEWAY='10.1.1.1'
 ```
 
-Once the changes are made, and need you execute the `init-runonce`.  When it is completed executing, you should have a fully configured ADMIN tenant with an Debian image for use creating virtual machines.
+Once the changes are made then you will need to execute the `init-runonce`.  When it is completed executing, you should have a fully configured ADMIN tenant with an Debian image for use creating virtual machines.
+
+To create a virtual machine using the Debian image added during the init-runonce, you will need to execute the following command:
+
+```
+openstack server create --image debian-10-openstack-arm64-qcow2 --flavor m1.large --key-name mykey --network demo-net debian10-test-1
+```
