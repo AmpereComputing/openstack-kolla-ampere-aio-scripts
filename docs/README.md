@@ -828,7 +828,7 @@ kolla-ansible -i /usr/local/share/kolla-ansible/ansible/inventory/all-in-one dep
 
 ### Post Deployment
 
-Once the deploy runs finishes you will also need to generate the authentication credentials. The `post-deploy` option for kolla-ansible creates a file in /etc/kolla/admin-openrc.sh which can be sourced to set all the necessary environment variables in the current session to allow the admin user to authenticate to the OpenStack services and use openstack clients and third party tooling like terraform and packer.
+Once the deploy run finishes you will also need to generate the OpenStack authentication credentials. The `post-deploy` option for [kolla-ansible](https://opendev.org/openstack/kolla-ansible) creates the file `/etc/kolla/admin-openrc.sh`.  The credentials file can be sourced prior to running OpenStack API to set all the necessary environment variables in the current session. By default this allows the `admin` user to authenticate to the OpenStack services using the default ADMIN tenant which was created and configured during the deploy phase. Sourcing the credentials file is also necessary when using OpenStack command line clients and third party tooling like terraform and packer.
 
 Execute kolla-ansible post-deploy as follows.
 
@@ -855,7 +855,7 @@ export OS_REGION_NAME=RegionOne
 export OS_AUTH_PLUGIN=password
 ```
 
-When the`post-deploy` command finishes the necessary credentials for authenticating to openstack services can be loaded into current environment by running the following command:
+When the`post-deploy` command finishes the necessary credentials for authenticating to openstack services can be loaded into current shell environment by running the following command:
 
 ```
 source /etc/kolla/admin-openrc.sh
@@ -863,7 +863,7 @@ source /etc/kolla/admin-openrc.sh
 
 ### Configuring OpenStack for first use
 Once the openstack services are deployed you will need to do some basic configuration to make the cloud usable. You will need to configure information specific to your network deployment in order to pre populate project, network, subnet, image, keys for the admin tenant.  Typically a script called init-runonce is used to do this.  This is typically a one time configuration for the Admin tenant.
-  * Runs kolla-ansible post-deploy to genterate credentials in /etc/kolla/admin-openrc.sh
+  * Runs [kolla-ansible](https://opendev.org/openstack/kolla-ansible) post-deploy to genterate credentials in /etc/kolla/admin-openrc.sh
   * Executes init-runonce with information specific to our network deployment in order to prepopulate project, network, subnet, image, keys for admin
 
 Additionally `init-runonce` is executed during the script processes.  Modifications will be necessary to ensure a proper functioning OpenStack deployment after installation.
