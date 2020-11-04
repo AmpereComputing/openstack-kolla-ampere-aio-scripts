@@ -42,9 +42,7 @@ As anyone who has attempted to install and deploy OpenStack knows, there are sup
 
 ### Operating System
 
-Currently and empiricially, [Debian](https://debian.org) is the best choice for base OS platform for running the cloud and for using kolla-ansible with Arm64 platforms.   Given that RedHat and CentOS recently released "Offical" Arm64 based distributions, there may be better experiences with other platforms in the future.(This sentence is confusing!)
-
-The server used for the writing of this was installed with standard Debian operating system version 10.x for Arm64 from a netboot installation ISO. Debian is one of the operating system platforms supported by [kolla-ansible](https://opendev.org/openstack/kolla-ansible). Debian releases 10.1-10.4 have also been tried with no perceivable difference between iterations when used in this context. The OS is installed in a minimal configuration, only including a OpenSSH server as the additional software selection.
+The server used for the writing of this article was installed with standard Debian operating system version 10.x for Arm64 from a Debian netboot installation ISO media obtained from an upstream Debian mirror. Debian is one of the operating system platforms supported by [Kolla](https://opendev.org/openstack/kolla) and [kolla-ansible](https://opendev.org/openstack/kolla-ansible). Through out the process of writing this article, Debian releases 10.1-10.4 were also tried with no perceivable difference between iterations when used in this context. The operating system should be installed in a minimal configuration, only including a OpenSSH server as the additional software selection.
 
 ```
 * Netboot iso for [Debian Buster 10.1 ARM64](https://gensho.ftp.acc.umu.se/mirror/cdimage/release/10.1.0/arm64/iso-cd/debian-10.1.0-arm64-netinst.iso)
