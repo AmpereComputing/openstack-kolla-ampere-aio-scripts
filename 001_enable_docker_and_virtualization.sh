@@ -15,7 +15,7 @@ VIRT='bridge-utils cpu-checker libvirt-daemon-system qemu-system qemu-efi virtin
 
 # Switch to Using Python3 by default
 update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
-update-alternatives --install /usr/bin/python python /usr/bin/python3.7 2
+update-alternatives --install /usr/bin/python python /usr/bin/python3.9 2
 
 echo "Installing tooling"
 apt-get install -y $TOOLS
