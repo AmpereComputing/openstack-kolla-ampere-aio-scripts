@@ -7,7 +7,7 @@ exec >> $LOGFILE 2>&1
 apt-get update -y && apt-get upgrade -y
 
 TOOLS="aptitude screen rsync git curl byobu asciinema tcpdump" 
-DOCKER="docker-ce" 
+DOCKER="docker.io" 
 PYTHON2="python-dev python-pip python-selinux python-setuptools python-virtualenv"
 PYTHON3="python3-dev python3-pip python3-selinux python3-setuptools python3-venv"
 DEVEL="libffi-dev gcc libssl-dev"
